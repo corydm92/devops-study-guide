@@ -1,0 +1,387 @@
+1.) <<<<<
+
+
+Q: Why do we use DevOps?
+
+
+A: We use DevOps to increase efficiency between the Development Team and the Operations Team by using Continuous Integration and quick releases to improve the collaboration.
+
+
+
+
+2.) <<<<<
+
+
+ Q: What are some of the differences between IT and DevOps?
+
+
+A: 
+* IT can be less productive, while DevOps is considered more productive.
+* IT has a skills centric team, while the DevOps can be broken up into specialties. If someone knows Kubernetes well and another knows Git well, the two collaborate instead of a "everyone knows everything" situation.
+* IT invests more time in planning, where DevOps uses smaller and more frequent releases that lead to easy scheduling and spending less time planning.
+* IT has a difficult time achieving a target or goal (think big picture), where DevOps combines frequent releases with continuous feedback to constantly push updates.
+
+
+3.) <<<<<
+
+
+Q: What is DevOps?
+
+
+A: DevOps is a software development methodology that improves collaboration between the Development Team and Operations Team using various automation tools.
+
+
+
+https://www.evernote.com/shard/s457/res/1c1480ca-f5d1-44f3-8992-285af41ce4f8
+
+
+
+Q:  Tell me about the DevOps life cycle, the steps and definitions.
+
+
+A: 
+{
+    Dev: {
+        Plan, Build, Code, Test 
+    },
+    Ops: {
+        Release, Deploy, Operation, Monitor
+    }
+}
+
+
+Plan what you have to do
+
+
+Code your way in
+ 
+Build your code
+* If you have a Java file you will have to create a .jar file or .exe file out of that. This is called Building
+ 
+Test your code
+* Test the code for any faults in the functionalities. If there are no faults you move on to the next step.
+
+
+Release the  code to the Ops team. There are two kinds of releases:
+* Internal Release - Releasing the software to a different team of the company (see the image above).
+* External Release -
+ 
+Operations team will Deploy the software onto the target system. This could be a testing server (server will test or run automated tests) or the production server (testing has happened).
+ 
+Operation can be done internally or be done by the customer. This stage is when we actually operate the software. Is it doing good when there is traffic, is it good when people are doing arbitrary tasks on the software.
+ 
+Monitor consistently to see if tasks or application is functioning properly. If it is not functioning properly, you are making a log of what is happening.
+ 
+If you get any kind of feedback from the Monitor stage, we start again from the top of the list by planning how to solve the problems we are getting in the Monitor stage.
+
+
+
+
+Q: How does DevOps solve the problem between Development and Operations? 
+
+
+A: They automate the life cycle. The Developer does not have to give his code to the Operations guy. It will be given through a tool (Docker). The Dev will enclose his code inside Docker and push it to the Ops team, and the Ops team will run Docker and the code should run fine.
+
+
+
+
+4/5.) <<<<<
+
+
+Q: What does SDLC stand for?
+
+
+A: Software Development Life Cycle
+
+
+
+
+Q: What are the five stages of the DevOps Life Cycle?
+
+
+A: Continuous Development, Continuous Testing, Continuous Integration, Continuous Deployment, and Continuous Monitoring
+
+
+
+
+Q: In what order does the life cycle usually operate?
+
+
+A: Development, pushed to version control, picked up by Integration Tool, Deployed to Test server. If it does not pass the tests, it is sent to the Monitor tool and back to Development. If it does pass the tests, it is Deployed to the Production server, where the Monitor tool logs bugs and/or features the user may have.
+
+
+
+
+Q: Explain the five stages of the DevOps Life Cycle.
+
+
+A: 
+
+
+Continuous Development
+* This stage involves committing code to version control tools like Git for maintaining the different versions of the code, and uses tools like Ant, Maven, Gradle for building/packing the code into an executable file that can be forwarded to the QA's for testing
+ 
+Continuous Integration
+* The stage is a critical point in the whole DevOps Life Cycle. It deals with integrating the different stages of the DevOps Life Cycle, and is therefore the key in automating the whole DevOps process.
+ 
+Continuous Deployment
+* In this stage the code is built, the environment or the application is containerized and is pushed on to the desired server. The key processes in this stage are Configuration Management, Virtualization and Containerization. 
+ 
+Continuous Testing
+* The stage deals with automated testing of the application pushed by the developer. If there is an error, the message is sent back to the integration tool, this tool in turn notifies the developer of the error. If the test was a success, the message is sent to the Integration Tool which pushes the build on the production
+ 
+Continuous Monitoring
+* The stage continuously monitors the deployed application for bugs or crashes. It can also be setup to collect user feedback. The collected data is then sent to the developers to improve the application.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

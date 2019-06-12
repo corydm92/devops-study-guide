@@ -1,0 +1,64 @@
+
+
+Software/Tech companies have two teams:
+* Developers (Development Team)
+* Operations (Operations Team)
+
+
+Developer
+* Job to develop applications and pass his code to the operations team
+
+
+Operator
+* Job to test the code, and provide feedback to the developers in case of bugs. If all goes well, the operations team uploads the code to the build servers.
+    * Put on the testing server or production server based on the requirement.
+
+
+Example:
+
+
+Developer runs code on his system, and then forwards it to the operations team.
+
+
+Operations tried to run the code on their system, but it did not run.
+* It could be a problem of environment, or that he did not install everything required by the software.
+* Operations pushes it back to the developer.
+
+
+Developer runs code fine on his system and says "It's not my fault!"
+* Leads to a lot of back and forth between developer and operations team, hence impacted efficiency.
+
+
+This problem lead to the DevOps position.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+
+https://www.evernote.com/shard/s457/res/291a7f8b-0011-45cb-b1d3-77d9fd0b5be8
+
+
+If you take the symbol and break it down, it looks like this:
+
+
+https://www.evernote.com/shard/s457/res/aa725079-5517-4505-8536-0375a683470d
+
+
+SDLC: Software Development Life Cycle
+
+We have to integrate the left side (Developer) with the right side (Operators) using a process called continuous integration. There are five stages of the DevOps Life Cycle, which are Continuous Development, Continuous Testing, Continuous Integration, Continuous Deployment, and Continuous Monitoring.
+
+
+Life Cycle Explained 
+
+
+Continuous Development:
+* Developer writes code and pushes to a version control system.
+* Any changes in the version control system will be picked up by the Continuous Integration tool. 
+* A Continuous Integration tool will join the different steps in the life cycle (joining the software from Continuous Development to Continuous Testing).
+
+
+Continuous Testing:
+* When the Developer pushes code to the version control system, the Continuous Integration picks up on the changes and Builds and Tests the code on a Testing Server.
+* If the test succeeds on the Testing Server, the Continuous Integration tool  pushes the code to the Production Server.
+
+
+Continuous Deployment:
+* The step in the life cycle when the Continuous Integration tool pushes builds to either the Testing Server or Production Server.
+
+
+Continuous Monitoring: 
+* If there are bugs from the Testing Server or the Production Server, the feedback is sent back to the Developers in the Continuous Monitoring stage to then Plan and Code again from the beginning of the life cycle.
+* This is also true for the Production Server, if any errors are logged or any of the customers would like new features we push the feedback using the Continuous Monitoring tool which is then pushed to the Developers.
+
+
+Development, pushed to version control, picked up by Integration Tool, Deployed to Test server. If it does not pass the tests, it is sent to the Monitor tool and back to Development. If it does pass the tests, it is Deployed to the Production server, where the Monitor tool logs bugs and/or features the user may have.
+
+
+Steps In Depth
+
+
+Continuous Development
+* This stage involves committing code to version control tools like Git for maintaining the different versions of the code, and uses tools like Ant, Maven, Gradle for building/packing the code into an executable file that can be forwarded to the QA's for testing
+
+
+Continuous Integration
+* The stage is a critical point in the whole DevOps Life Cycle. It deals with integrating the different stages of the DevOps Life Cycle, and is therefore the key in automating the whole DevOps process.
+
+
+Continuous Deployment
+* In this stage the code is built, the environment or the application is containerized and is pushed on to the desired server. The key processes in this stage are Configuration Management, Virtualization and Containerization. 
+
+
+Continuous Testing
+* The stage deals with automated testing of the application pushed by the developer. If there is an error, the message is sent back to the integration tool, this tool in turn notifies the developer of the error. If the test was a success, the message is sent to the Integration Tool which pushes the build on the production
+
+
+Continuous Monitoring
+* The stage continuously monitors the deployed application for bugs or crashes. It can also be setup to collect user feedback. The collected data is then sent to the developers to improve the application.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

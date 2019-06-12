@@ -1,0 +1,46 @@
+DevOps is a software development methodology which improves the collaboration between developers and operations team using various automation tools. These automation tools are implemented using various stages which are part of the DevOps Lifecycle.
+
+https://www.evernote.com/shard/s457/res/291a7f8b-0011-45cb-b1d3-77d9fd0b5be8
+
+1.) Plan what you have to do
+
+
+2.)  Code your way in
+
+
+3.) Build your code
+* If you have a Java file you will have to create a .jar file or .exe file out of that. This is called Building
+
+
+4.) Test your code
+* Test the code for any faults in the functionalities. If there are no faults you move on to the next step.
+
+
+5.) Release the  code to the Ops team. There are two kinds of releases:
+* Internal Release - Releasing the software to a different team of the company (see the image above).
+* External Release -
+
+
+6.) Operations team will Deploy the software onto the target system. This could be a testing server (server will test or run automated tests) or the production server (testing has happened).
+
+
+7.) Operation can be done internally or be done by the customer. This stage is when we actually operate the software. Is it doing good when there is traffic, is it good when people are doing arbitrary tasks on the software.
+
+
+8.) Monitor consistently to see if tasks or application is functioning properly. If it is not functioning properly, you are making a log of what is happening.
+
+
+If you get any kind of feedback from the Monitor stage, we start again from the top of the list by planning how to solve the problems we are getting in the Monitor stage.
+
+
+This goes on and on until you have the perfect application, but there is no such thing as a perfect application. There will always be new requirements, new bugs, new security patches.
+
+
+How does DevOps solve the problem between Development and Operations? They automate the life cycle. The Developer does not have to give his code to the Operations guy. It will be given through a tool (Docker). The Dev will enclose his code inside Docker and push it to the Ops team, and the Ops team will have to run Docker and the code will run fine.
+
+
+
+
+
+
+

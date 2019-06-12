@@ -1,0 +1,47 @@
+Traditional IT
+1.) Less Productive
+2.) Skill Centric Team
+3.) More Time invested in planning
+4.) Difficult to achieve target or goal
+
+DevOps
+1.) More Productive
+2.) Team is divided into specialized silos (technology). One person knows DevOps better, one person knows Kubernetes better, one person knows Git better.
+3.) Smaller and Frequent releases lead to easy scheduling and less time in planning
+4.) Frequent releases, with continuous feedback 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
