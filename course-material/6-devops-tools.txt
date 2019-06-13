@@ -1,0 +1,37 @@
+Continuous Development
+* Git
+    * Git is a distributed version-control system for tracking changes in computer files and coordinating work on those files among multiple people. It is primarily used for source-code management in software development, but it can be used to keep track of changes in any set of files.
+
+
+Continuous Integration
+* Jenkins
+    * Jenkins is an open source automation server written in Java. Jenkins helps to automate the non-human part of the software development process, with Continuous Integration and facilitating technical aspects of Continuous Delivery.
+
+
+Continuous Deployment
+* Docker (Virtualization and Containerization)
+    * The problem of being able to run your code on your system, and not being able to run your code on another system is solved using containerization.
+    * Containerization wraps your code with the software dependencies is wrapped around by a container. It is a physical entity, and if you run it on any other system it will run as if it is running on the same system as the developer.
+    * A container is an executable form of an operating system. The only requirement is that you have Docker installed on the target OS.
+* Puppet /Ansible (Configuration Management)
+    * You have a fresh computer setup (just OS). If you want to test your application on this system, you must first install software like Docker, Apache Server, Python, etc. This can all be done with Configuration Management without even touching this remote computer.
+
+
+Continuous Testing
+* Selenium
+    * In Continuous Testing, it's all about creating testing suites that automatically test your code once it gets built on your system.
+    * These suites can be created using the Selenium testing software.
+    * Selenium is a portable software-testing framework used for web applications. It is an open source tool which is used for automating the tests carried out on web browsers (Web applications are tested using any web browser).
+
+
+Continuous Monitoring
+* Nagios
+    * Nagios gives you a dashboard with all your services listed on it, and these services can exist on any system outside the network or inside the network. All the services running on it can be seen inside the Nagios dashboard.
+    * Its a great tool for monitoring your application, gathering user data, and user activity at a one stop destination.
+    * Nagios is an open-source DevOps tool which is used for monitoring systems, networks and infrastructure. It also offers monitoring and alerting services for any configurable event.
+
+
+DevOps Life Cycle With Tools
+
+
+Development, using Git pushes code changes, picked up by Jenkins (Integration), sent to testing server where Puppet installs system dependencies like Python, and uses Selenium to run test suites (Testing/Deployment).  It then moves from the test server to the production server using Jenkins where the Nagios tool does it's monitoring (Integration/Deployment/Monitoring).

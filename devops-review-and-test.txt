@@ -22,6 +22,8 @@ A:
 * IT has a difficult time achieving a target or goal (think big picture), where DevOps combines frequent releases with continuous feedback to constantly push updates.
 
 
+
+
 3.) <<<<<
 
 
@@ -135,6 +137,63 @@ Continuous Monitoring
 
 
 
+
+6.) <<<<<
+
+
+Q: What kinds of tools are used in DevOps, and where in the Life Cycle?
+
+
+A:
+
+
+Development: Git
+
+
+Testing: Selenium
+
+
+Integration: Jenkins
+
+
+Deployment: Docker, Ansible, Puppet
+
+
+Monitoring: Nagios
+
+
+
+
+Q: Explain what these technologies do.
+
+
+A: 
+
+
+GitHub: Version control software, used to track changes in code and version changes.
+
+
+Selenium: Open source software tool used to automate testing suites as soon as the build is put onto a machine.
+
+
+Jenkins: Open source automation server, helps to automate the non-human part of the software development process, with Continuous Integration and facilitating technical aspects of Continuous Delivery.
+
+
+Docker: A tool used to create images of an application, wrapping up all the dependencies of the project in a process called containerization that can be run on any machine that has Docker installed.
+
+
+Puppet: A configuration management tool used to install system dependencies like Docker or Python, without having to touch the remote computer.
+
+
+Nagios: A monitoring tool with a dashboard with all your services listed on it. These services can exist on any system outside the network or inside the network. All the services running on it can be seen inside the Nagios dashboard.
+
+
+
+
+Q: Explain the DevOps Life Cycle using the tools you have listed above.
+
+
+A: Developers use GitHub to make and track changes in the applications code. When changes are pushed, Jenkins picks up the build and sends it to the testing server. The server is configured using Puppet to install system dependencies, and Selenium to install and run the test suites. Once the tests pass, Jenkins again picks up the build and sends it to the production server, where Nagios monitors the application for errors and user feedback.
 
 
 
