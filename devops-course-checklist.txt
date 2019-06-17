@@ -1,0 +1,34 @@
+01:06 - why devops [ done ]
+03:45 - traditional IT vs devops [ done ]
+07:25 - what is devops [ done ]
+11:00 - devops lifecycle [ done ]
+11:05 - how devops work [ done ]
+22:55 - devops tools [ done ]
+29:37 - what is git [ done ]
+31:45 - common git commands [ wip ]
+1:20:28 - problems before docker
+01:27:12 - what is docker
+01:33:07 - docker vs virtal machine
+01:35:30 - docker installation
+01:40:15 - docker container lifecycle
+01:42:45 - common docker operations
+02:17:59 - what is a dockerfile
+02:35:55 - introduction to docker volumes
+03:18:15 - what is docker swarm
+03:34:56 - what is puppet
+03:57:05 - code basics for puppet
+04:24:35 - what is ansible
+04:51 - introduction to software testing
+04:57:30 - introduction to selenium
+05:26:41 - how to create automated tests in selenium
+05:41:42 - features of testng
+05:44:45- annotations in testng
+06:50:21 - continuous integration in jenkins
+07:46:32 - why kubernetes
+07:56:08 - what is kubernetes
+08:01:16 - kubernetes architecture
+08:32:48 - what is nagios
+08:52:44 - devops interview questions & answers
+
+
+
