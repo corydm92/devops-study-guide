@@ -3,9 +3,15 @@
 07:25 - what is devops [ done ]
 11:00 - devops lifecycle [ done ]
 11:05 - how devops work [ done ]
+<<<<<<< HEAD:devops-course-checklist.txt
 22:55 - devops tools [ done ]
 29:37 - what is git [ done ]
 31:45 - common git commands [ wip ]
+=======
+22:55 - devops tools [ left off @ 23:19 ]
+29:37 - what is git
+31:45 - common git commands
+>>>>>>> parent of 2025696... moved test to root directory:DevOps Checklist
 1:20:28 - problems before docker
 01:27:12 - what is docker
 01:33:07 - docker vs virtal machine
