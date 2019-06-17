@@ -197,7 +197,72 @@ A: Developers use GitHub to make and track changes in the applications code. Whe
 
 
 
+7.) <<<<<
 
+
+Q: What is Git?
+
+
+A: Git is a version-control system for tracking changes in computer files and coordinating work on those files between multiple people.
+
+
+
+
+Q: Tell me about some of the common git commands you use.
+
+
+A:
+
+
+git init - Creates repository on local system
+
+
+git status - Check current status of repository
+
+
+git add - Add and stage files for commit 
+
+
+git commit - Once files are staged, they are ready to be committed and added to the git log. Last step before pushing.
+
+
+git remote add origin <URL> - Set the origin of the repository on Github so  we can push our changes.
+
+
+git push origin <branch-name> - Push our changes to a branch in our repository.
+
+
+git clone <URL> - Creates a new folder with the name of the repository in the current directory you are git cloning to.
+
+
+git pull - Pulls the latest changes from the repository.
+
+
+git branch <name-of-new-branch> - Creates a branch with the current status of the branch you are on.
+
+
+git branch -D <name-of-branch> - Deletes branch.
+
+
+git checkout <name-of-branch> - Switches to branch.
+
+
+git stash - Stashes your changes on a current  branch. Useful if you need to switch between branches in the middle of work without untracked files following you from branch to branch.
+
+
+git stash pop - Adds the stashed files back to your branch once you have switched back.
+
+
+git revert <commit-id> - Reverts to a previous commit. In git log you will actually see that it creates a new commit with a new commit id and has notes on the reversion.
+
+
+git checkout <commit-id> - Allows you to go into previous commits without actually reverting.
+
+
+git diff <commit-id-version-x> <commit-id-version-y> - Shows you the difference between two commits.
+
+
+git log - Shows you a log of commits with the commit messages.
 
 
 
