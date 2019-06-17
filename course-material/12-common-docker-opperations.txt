@@ -1,0 +1,150 @@
+> Docker Commands
+
+
+
+
+
+sudo docker --version - Command that shows you the installed version of the docker  software on your system.
+
+
+
+sudo docker pull <image-name> - Command helps you pull images from the central docker repository.
+* ex: docker pull ubuntu > Pulls the ubuntu image from Docker Hub
+* Remember this just pulls the image. We have not run the container yet.
+
+
+sudo docker images - Command helps you in listing the Docker images on your system.
+
+
+sudo docker run <image>  - Command helps in running containers, from their image name.
+* You use flags as well when you run images.
+* sudo docker run -it -p 82:80 -d <image-name>
+    * -it - Make the container interactive in the terminal so we can also pass in commands.
+    * -d - Run the container as a daemon (in the background). When you run the container, make sure it runs in the background until you stop the container.
+    * -p - Port mapping. When you install apache, if you want to check if it is working or not normally it is on port 80. If you want check the port on the container, or if you want to check if everything is running inside the container fine, you'll have to map the internal port of the container to the outside host OS. So if you wanted to map the port 82 of the host OS to the 80 port of the container this is how you do that. So it's host-port : container-port.
+
+
+sudo docker ps - Command helps in listing all the containers which are running in the system.
+* Adding sudo docker ps -a you can see all running and stopped containers.
+
+
+sudo docker stop <container-id> - Stops the container from running.
+
+
+sudo docker exec <container-id> - For logging into/accessing the container, one can use the exec command.
+
+
+* sudo docker exec -it <container-id> bash
+    * -it makes the execution interactive.
+    * bash is the current dominant space we are working in. Without it we get an error:  
+        * "docker exec" requires at least 2 arguments.
+        * See 'docker exec --help'.
+        * Usage:  docker exec [OPTIONS] CONTAINER COMMAND [ARG...] 
+
+
+* root@e9b24ca846a9:/# - This is what we get in the command line. 
+    * The first part is the user, which for us is root. 
+    * The second part is our container id.
+    * We can preform things like apt-get update inside our container.
+    * sudo is not present as a command. This is because only the bare minimum is required to run the image using docker, so even libraries like sudo are not present in the container (out of the box).
+    * exit - Used to exit the container while in the command line.
+
+
+sudo docker kill <container-id> - This command kills the container by stopping its execution immediately. 
+* The difference between docker kill and docker stop is that docker stop gives the container time to shutdown gracefully, in situations when its taking too much time for getting the container to stop, one can opt to kill it.
+* It's like shutting down the computer via start, compared to holding down the power button.
+
+
+sudo docker rm <container-id> - This will delete the container from our system.
+* To remove a container that is running, you can pass in the -f flag.
+    * docker rm -f <container-id>
+
+
+sudo docker rmi <image-id> - To remove an image from the system, we use the command rmi.
+
+
+sudo docker rm -f $(sudo docker ps -a -q) - This will remove all containers that are present in your system.
+
+
+> Saving changes inside a container
+
+
+
+docker commit <container-id> <name-for-image> - With this command, a new image is created which can be seen under docker images with the same name as passed in the command.
+* docker commit ea165f5d8e48 devops-test
+* This creates a new image, not a container. Any changes made (like creating an app folder) will then be stored and built as an image with the name passed in. We can then:
+    * docker run -it -d devops-test
+    * docker ps 
+        * Shows the new container that has been built from the image.
+    * docker exec -it  <devops-test-id> bash
+    * root@...../ ls
+        * Shows us that the container has all the changes from the commit passed to from the new image.
+
+
+The power with this comes with customization. We can install software, like Apache or MySQL and save the container using the docker commit command and that's it. Whenever you run that image, all the containers built will have the same template software you have installed in the image.
+
+
+
+
+> Installing Apache in a container, then make an image from the container
+
+
+* sudo docker run -it -d ubuntu
+* docker exec -it 6f20b91ab68cc66a12adb6a7747c6397ef3278a4ca7dfa8bb8bf24ccb6707df4 bash
+* apt-get update 
+    * Remember there is no sudo
+* apt-get apache2
+* service apache2 start
+* service apache2 status 
+    * To verify apache is running
+* exit
+* docker commit 6f20b91ab68c corydm92/apache
+    * This naming convention is for pushing images up to Docker Hub. You must first type your username followed by /<container-to-image-name>
+* docker run -it -p 82:80 -d corydm92/apache
+    * This is what our container looks like
+    * 6d9c77b5caa8        corydm92/apache     "/bin/bash"         3 minutes ago       Up 3 minutes        0.0.0.0:82->80/tcp   vibrant_tharp
+* docker exec -it 6d9c77b5caa8 bash
+* service apache2 start
+    * Get a message saying Apache started
+* exit
+
+
+Now in our local browser, I'm able to navigate to my 0.0.0.0:82 address (if I were using AWS, 0.0.0.0 would be my domain IP instead of my localhost IP. Inside the container, 0.0.0.0 is the localhost, but if I were using AWS that IP would be different.) and see the Apache Ubuntu message. Now if I...
+
+
+*  docker stop 6d9c77b5caa8
+
+
+And navigate back to my browser, it shows that it can't be reached.
+
+
+
+
+
+
+> Pushing to DockerHub
+
+
+
+
+
+
+
+* sudo docker login
+    * You will be presented with a username/password credentials form. Sign in to continue.
+* sudo docker push <image-name>
+    * For me, it was sudo docker push corydm92/apache
+        * Remember the naming convention, it won't work unless you specify your username followed by /name-of-image.
+
+
+
+
+
+
+
+
+
+
+
+
+
