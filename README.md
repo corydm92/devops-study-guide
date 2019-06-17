@@ -1,4 +1,4 @@
-#devops-study-guide
+# devops-study-guide
 
 course-material >>> Personal notes I've been taking as I follow the course, used to study for a test I'm making for myself.
 
