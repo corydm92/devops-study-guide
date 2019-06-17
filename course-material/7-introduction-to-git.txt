@@ -72,5 +72,5 @@ You can do the following tasks, when working with Git:
 
 
 
-Want to  heck the log for every commit detail in your repository? You can accomplish that using the command git log. Type "q" to get out of git log. 
+Want to check the log for every commit detail in your repository? You can accomplish that using the command git log. Type "q" to get out of git log. 
 
