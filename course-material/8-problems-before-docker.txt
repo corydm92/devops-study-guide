@@ -1,0 +1,21 @@
+Imagine you are a Developer, and you are creating a website on PHP. You need the following:
+
+
+* OS
+* PHP Software Installed on OS
+* Libraries
+
+
+The problem occurs when the Developer has to give his program to someone else. The Operations/Testing guy will then setup his environment the same way, same OS, Software, and Libraries. Even though the Ops guy did his best with installing everything, he still could not get the file to run correctly.
+
+
+"Developers used to run the code on their system, it would run perfectly. But the same code did not run on the operations team system."
+
+
+Why don't they use VM's? Because of the size if the VM, for every feature there would be too many versions of VMs.
+
+
+We needed an entity which can "contain" all the software dependencies, and can be ported on to other computers as plug and play package.
+
+
+The answer to this was the Developer writes in an environment that he is able to give to the Operation team for further testing and deploying on production. The Ops guy now doesn't have to worry about the OS, Software, or Libraries because everything is contained inside that wrapper environment. This is all made possible using software like Docker.

@@ -266,7 +266,21 @@ git log - Shows you a log of commits with the commit messages.
 
 
 
+8.) <<<<<
 
+
+Q: What are some of the problems before technologies like Docker?
+
+
+A: When the Developer has to give his program to the Operations/Testing guy, he will then setup his environment the same way, same OS, Software, and Libraries. Even though the Ops guy did his best with installing everything, he still could not get the file to run correctly.
+
+
+
+
+Q: How was this fixed?
+
+
+A: The Developer writes in an environment that he is able to give to the Operation team for further testing and deploying on production. The Ops guy now doesn't have to worry about the OS, Software, or Libraries because everything is contained inside that wrapper environment. This is all made possible using software like Docker.
 
 
 

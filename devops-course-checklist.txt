@@ -6,7 +6,7 @@
 22:55 - devops tools [ done ]
 29:37 - what is git [ done ]
 31:45 - common git commands [ done ]
-1:20:28 - problems before docker
+1:20:28 - problems before docker [ done ]
 01:27:12 - what is docker
 01:33:07 - docker vs virtal machine
 01:35:30 - docker installation
