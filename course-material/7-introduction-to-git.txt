@@ -1,0 +1,76 @@
+DVCS: Distributed Version Control System
+
+
+What is Git?
+
+
+Git is a version-control system for tracking changes in computer files and coordinating work on those files among multiple people. It is primarily used for source-code management in software development, but it can be used to keep track of changes in any set of files.
+
+
+Common Git Commands
+
+
+You can do the following tasks, when working with Git:
+
+
+* Creating Repository
+
+
+    * You can create a repository using the command git init. Navigate to your project folder and enter the command to initialize a git repository on your local system.
+
+
+* Making Changes
+
+
+    * Once the directory has been initialized you can check the status of the files, whether they are being tracked by git or not, using the command git status.
+
+
+    * Since no files are being tracked right now, let us stage these files. For that, enter the command git add. If we want to track all the files in the project folder, we can type git add .
+
+
+    * Once the files or changes have been staged, we are ready to commit them in our repository. We can commit the files using the command git commit -m "custom message".
+
+
+* Syncing Repositories
+
+
+    * Once everything is ready on our local, we can start pushing our changes to the remote repository. Copy your repository link and paste it in the command git remote add origin "<URL to repository>"
+
+
+    * To push the changes to your repository, enter the command git push origin <branch name> and hit enter. In our case the branch is master, hence git push origin master. This command will then prompt for username and password, enter the values and hit enter.
+
+
+    * Similarly, if we want to download the remote repository to our local system, we can use the command git clone <URL>. This command will create a folder with he repository name, and download all the contents of the repository inside this folder. in our example, repository contents were downloaded into the "devops" folder.
+
+
+    * The git pull command is also used for pulling the latest changes from the repository, unlike git clone, this command can only work inside an initialized git repository. This command is used when you are already working in the cloned repository, and want to pull the latest changes, that others might have pushed to the remote repository. git pull <URL of link>
+
+
+* Parallel Development
+
+
+    * Until now, we saw how you can work on git. But now imagine, multiple developers working on the same project or repository. To handle the work space of multiple developers, we use branches. To create a branch from an existing branch, we  type git branch <name-of-new-branch>. Similarly, to delete a branch use the command git branch -D <branch name>.
+        * To list all branches, type git branch.
+
+
+    * To switch to the new branch, we type the command git checkout <branch-name>.
+
+
+    * Want to save your work without committing the code? Git has got you covered. This can be helpful when you want to switch branches, but do not want to save your work to your git repository. To stash your staged files without committing just type in git stash. If you want to stash your untracked files as well, type git stash -u. Once you are back and want to retrieve working, type in git stash pop.
+        * If you make changes without committing to a branch and switch to a new branch, your changed files follow you to the next branch. This is because the file is "untracked" and does not belong to a branch. This is why we use git stash.
+        * This is useful if you are working on a branch, but are not yet done. Say there is another branch that needs work done, you can git stash your changes on the current branch and switch to another branch. When you are finished on the other branch, you can switch back and use git stash pop to retrieve your work.
+
+
+    * This command helps you in reverting a commit to a previous version git revert <commit-id>. The <commit-id> can be obtained from the output of git log.
+
+
+    * You can look at older commits using git checkout <commit-id>. This will set the head to that commit. To get back to the current version of your branch, just use git checkout <branch>.
+
+
+    * This command helps us in checking the differences between two versions of a file. git diff <commit-id of version x> <commit-id of version y>. Again, <commit-id> can be obtained from the output of git log.
+
+
+
+
+Want to  heck the log for every commit detail in your repository? You can accomplish that using the command git log. Type "q" to get out of git log. 
+
