@@ -11,7 +11,7 @@
 01:33:07 - docker vs virtal machine [ done ]
 01:35:30 - docker installation [ done ]
 01:40:15 - docker container lifecycle [ done ]
-01:42:45 - common docker operations
+01:42:45 - common docker operations [ done ]
 02:17:59 - what is a dockerfile
 02:35:55 - introduction to docker volumes
 03:18:15 - what is docker swarm
