@@ -1,0 +1,24 @@
+Docker is a computer program that performs operating-system-level virtualization, also known as "containerization". It was first released in 2013 and is developed by Docker, Inc. Docker is used to run software packages called "containers".
+
+
+
+Application containerization is an OS-level virtualization method used to deploy and run distributed applications without launching an entire virtual machine (VM) for each app.
+
+
+
+https://www.evernote.com/shard/s457/res/b79531a6-149c-466d-9c15-4d6a34efc106
+
+
+
+You will set up a computer with an OS (Windows, Linux). As simple as a Laptop with one of these installed. Once you have the OS installed, you will need to install the container engine. The container engine is nothing but the docker software that you would install on top of your OS. Once you install the container engine you can run any kind of container. For example if your code needs an ubuntu container you simply run docker run ubuntu. It will basically download the ubuntu container, then you can add your code files inside that ubuntu container and start working.
+
+
+Why is the container so small? The container does not contain all the OS files. The container engine shares its space with the OS system. The container is void, the container shares the underlying kernel of the OS on which the container engine is installed. They don't need all the files of the OS, they just need the binaries required for the particular environment to work.
+
+
+
+https://www.evernote.com/shard/s457/res/778a7465-7a3a-46e2-a4d4-30d6cf58d07a
+
+
+
+In the case of containers, you have the bare minimum binaries or libraries. In the case of the VM's, you have the whole OS installed the size of the VM is much bigger. 
