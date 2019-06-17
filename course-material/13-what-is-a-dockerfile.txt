@@ -1,0 +1,110 @@
+A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using docker build users can create an automated build that executes several command-line instructions in succession.
+
+
+Various Commands in Dockerfile
+
+
+FROM - The FROM keyword is used to define the base image, on which we will be building.
+
+
+* The first line in a Dockerfile is always FROM.
+* The image from which we want to make changes.
+* EX: FROM ubuntu
+
+
+ADD - The ADD keyword is used to add files to the container being built. 
+
+
+* The syntax which is followed is ADD <source> <destination in container>
+    * The first argument is where you want the files to be present.
+    * The second is the location where you want those files to be copied.
+* It's basically used to add files from inside a container.
+* EX: ADD . /var/www/html
+
+
+RUN - The RUN keyword is used to add layers to the base image, by installing components. Each RUN statement adds a new layer to the docker image. The RUN keyword runs whatever commands in the terminal you are working in.
+
+
+* FROM ubuntu
+* RUN apt-get update
+* RUN apt-get -y install apache2
+    * The -y flag is for Y/n user inputs. This specifically in Dockerfile will automate the input.
+* ADD . /var/www/html
+
+
+CMD - The CMD keyword is used to run commands on the start of the container. These commands run only when there is no argument specified while running the container.
+
+
+* FROM ubuntu
+* RUN apt-get update
+* RUN apt-get -y install apache2
+    * The -y flag is for Y/n user inputs. This specifically in Dockerfile will automate the input.
+* ADD . /var/www/html
+* CMD apachectl -D FOREGROUND
+    * Does nothing but runs this command line (starts apache) the moment the container is started.
+    * Only runs when there are no arguments specified in the RUN command. If there are arguments in the RUN command, the CMD will be skipped.
+
+
+ENTRYPOINT - The ENTRYPOINT keyword is used strictly run commands the moment the container initializes. The difference between CMD and ENTRYPOINT is, ENTRYPOINT will run irrespective of the fact whether argument is RUN is specified or not.
+
+
+* FROM ubuntu
+* RUN apt-get update
+* RUN apt-get -y install apache2
+    * The -y flag is for Y/n user inputs. This specifically in Dockerfile will automate the input.
+* ADD . /var/www/html
+* ENTRYPOINT apachectl -D FOREGROUND
+
+
+ENV - The ENV keyword is used to define environment variables in the container run-time.
+
+
+* FROM ubuntu
+* RUN apt-get update
+* RUN apt-get -y install apache2
+    * The -y flag is for Y/n user inputs. This specifically in Dockerfile will automate the input.
+* ADD . /var/www/html
+* ENTRYPOINT apachectl -D FOREGROUND
+* ENV name Devops Intellipaat
+    * Specifies the name variable with the value of "Devops Intellipaat"
+
+
+
+
+Creating an image using Dockerfile
+
+
+
+
+When creating a Dockerfile, the name of the Dockerfile must be Dockerfile without an extension.
+
+
+We create our Dockerfile:
+
+
+FROM ubuntu
+RUN apt-get update
+RUN apt-get -y install apache2
+ADD . /var/www/html
+ENTRYPOINT apachectl -D FOREGROUND
+ENV name devops-tutorial
+
+
+We make an html file:
+
+
+<html>
+<title>Hello World</title>
+<body>
+<h1>Hello World</h1>
+</body>
+</html>
+
+
+Now, in our directory we use the command:
+* docker build . -t new_dockerfile
+
+
+To remove permissions from docker so you don't need sudo privileges
+* sudo usermod -aG docker $USER
+* Restart your computer

@@ -347,7 +347,46 @@ You pull from Docker Hub, it becomes an image. You then run that image, it becom
 
 
 
+13.) <<<<< What is a "Dockerfile"?
 
+
+
+
+
+Q: What is a Dockerfile?
+
+
+A: A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Using docker build users can create an automated build that executes several command-line instructions in succession.
+
+
+
+
+Q: What are the commands in a Dockerfile, and what do they do?
+
+
+A: 
+
+
+FROM - The FROM keyword is used to define the base image, on which we will be building.
+ 
+ADD - The ADD keyword is used to add files to the container being built. 
+ 
+RUN - The RUN keyword is used to add layers to the base image, by installing components. Each RUN statement adds a new layer to the docker image. The RUN keyword runs whatever commands in the terminal you are working in.
+ 
+CMD - The CMD keyword is used to run commands on the start of the container. These commands run only when there is no argument specified while running the container.
+ 
+ENTRYPOINT - The ENTRYPOINT keyword is used strictly run commands the moment the container initializes. The difference between CMD and ENTRYPOINT is, ENTRYPOINT will run irrespective of the fact whether argument is RUN is specified or not.
+ 
+ENV - The ENV keyword is used to define environment variables in the container run-time.
+
+
+
+
+Q: From a directory, how would you build your Dockerfile?
+
+
+A: docker build . -t new_dockerfile
+* To specify just a folder, or just a file, instead of . replace with ./some-folder-or-file-name
 
 
 
