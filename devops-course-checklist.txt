@@ -9,8 +9,8 @@
 1:20:28 - problems before docker [ done ]
 01:27:12 - what is docker [ done ]
 01:33:07 - docker vs virtal machine [ done ]
-01:35:30 - docker installation
-01:40:15 - docker container lifecycle
+01:35:30 - docker installation [ done ]
+01:40:15 - docker container lifecycle [ done ]
 01:42:45 - common docker operations
 02:17:59 - what is a dockerfile
 02:35:55 - introduction to docker volumes

@@ -1,0 +1,9 @@
+https://www.evernote.com/shard/s457/res/b5273f3f-da97-4b93-b0a2-2d5cddcad349
+
+Docker Hub has all the open source container images that are present (ubuntu, sentOS, Alpine). 
+
+
+First thing you do is pull the image from Docker onto your system. Your system is where Docker Engine is installed. What you download from Docker Hub is an image of a container. The next step you do is you run the image. This is the normal state of a container. The moment you run the image it  becomes a container. When you are done with a container, you can stop it. When you are done with everything, and you don't need the container anymore, you can delete it. This is the Life Cycle of Docker.
+
+
+You pull from Docker Hub, it becomes an image. You then run that image, it becomes a container. Containers can either be in the running state, the stopped state, or the deleted state.

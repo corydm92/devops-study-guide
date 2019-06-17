@@ -1,0 +1,15 @@
+When it comes to installation there are three main installations you may come across. 
+
+
+* Mac
+    * Docker Toolbox for Mac
+    * https://store.docker.com/editions/community/docker-ce-desktop-mac
+* Windows
+    * Docker Toolbox for Windows
+    * https://store.docker.com/edition/community/docker-ce-desktop-windows
+* Ubuntu
+    * sudo apt-get update
+    * sudo apt-get install docker.io
+
+
+

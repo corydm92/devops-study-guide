@@ -1,4 +1,4 @@
-1.) <<<<<
+1.) <<<<< Why Devops?
 
 
 Q: Why do we use DevOps?
@@ -9,7 +9,7 @@ A: We use DevOps to increase efficiency between the Development Team and the Ope
 
 
 
-2.) <<<<<
+2.) <<<<< Traditional IT vs DevOps
 
 
  Q: What are some of the differences between IT and DevOps?
@@ -24,7 +24,7 @@ A:
 
 
 
-3.) <<<<<
+3.) <<<<< What Is DevOps?
 
 
 Q: What is DevOps?
@@ -87,7 +87,7 @@ A: They automate the life cycle. The Developer does not have to give his code to
 
 
 
-4/5.) <<<<<
+4/5.) <<<<< DevOps Life Cycle / How DevOps Works
 
 
 Q: What does SDLC stand for?
@@ -138,7 +138,7 @@ Continuous Monitoring
 
 
 
-6.) <<<<<
+6.) <<<<< DevOps Tools
 
 
 Q: What kinds of tools are used in DevOps, and where in the Life Cycle?
@@ -197,7 +197,7 @@ A: Developers use GitHub to make and track changes in the applications code. Whe
 
 
 
-7.) <<<<<
+7.) <<<<< Introduction To Git
 
 
 Q: What is Git?
@@ -266,7 +266,7 @@ git log - Shows you a log of commits with the commit messages.
 
 
 
-8.) <<<<<
+8.) <<<<< Problems Before Docker
 
 
 Q: What are some of the problems before technologies like Docker?
@@ -285,7 +285,64 @@ A: The Developer writes in an environment that he is able to give to the Operati
 
 
 
+9.) <<<<< What is Docker?
 
+
+Q: What is Docker?
+
+
+A: Docker is a computer program that performs operating-system-level virtualization, known as "containerization".
+
+
+
+
+Q: What is Application containerization?
+
+
+A: Application containerization is an OS-level virtualization method used to deploy and run distributed applications without launching an entire virtual machine (VM) for each app.
+
+
+
+
+Q: How does Docker work on a system?
+
+
+A: Once you have your OS installed on a computer, you install the container engine. The container engine is nothing but the docker software that you would install on top of your OS. Once you install the container engine you can run any kind of container.
+
+
+
+
+Q: Why are containers so small?
+
+
+A: The container does not contain all the OS files. The container engine shares its space with the OS system. The container is void, the container shares the underlying kernel of the OS on which the container engine is installed. They don't need all the files of the OS, they just need the binaries required for the particular environment to work.
+
+
+
+
+Q: What's the difference between Docker and VM?
+
+
+A: In the case of containers, you have the bare minimum binaries or libraries. In the case of the VM's, you have the whole OS installed the size of the VM is much bigger. 
+
+
+
+
+10.) <<<<< Docker Installation
+ 
+N/A
+
+
+
+11.) <<<<< Docker Container Life cycle
+
+
+Q: Explain the Docker Container Life cycle.
+
+
+A: First thing you do is pull the image from Docker onto your system. Your system is where Docker Engine is installed. What you download from Docker Hub is an image of a container. The next step you do is you run the image. This is the normal state of a container. The moment you run the image it  becomes a container. When you are done with a container, you can stop it. When you are done with everything, and you don't need the container anymore, you can delete it. This is the Life Cycle of Docker.
+ 
+You pull from Docker Hub, it becomes an image. You then run that image, it becomes a container. Containers can either be in the running state, the stopped state, or the deleted state.
 
 
 
