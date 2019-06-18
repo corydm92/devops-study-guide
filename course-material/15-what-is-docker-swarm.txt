@@ -1,0 +1,55 @@
+Docker Swarm is a clustering and scheduling tool for Docker containers. With Swarm, IT administrators and developers can establish and manage a cluster of Docker nodes as a single virtual system.
+
+
+* You get the opportunity to monitor the health of containers.
+* Helps you keep a number of specified healthy containers always in the running state.
+
+
+A Docker Swarm cannot work with just one machine. Like containers, machines can be faulty sometimes. To fix this, there is an distributed kind of architecture that goes like this.
+
+
+* You have multiple machines running on the same swarm.
+    * In this swarm there will be one machine called leader.
+        * Leader tells the workers what to do.
+        * Workers have the containers running on them.
+
+
+
+
+Creating a Docker Swarm Cluster
+
+
+docker swarm init --advertise-addr=<private-ip>
+* The private IP can come from another computer, or a service like AWS.
+* Once you have initialized the node, in the terminal it gives you a long command to add a worker to the swarm. You copy this and run it in the terminal of the computer you would like to add as a worker.
+    * For a worker to leave the cluster, you use the command sudo docker swarm leave
+* For a leader to leave the cluster, you must use the command sudo docker swarm leave --force 
+
+
+
+
+Deploying an App Using Docker Swarm
+
+
+
+
+Containers on the cluster are deployed using services on Docker Swarm. A service is a long-running Docker container that can be deployed to any node worker.
+
+
+docker service create --name <name-of-service> --replicas <number-of-replicas> -p <listening-port>:<container-port> <image-name>
+docker service create --name apache --replicas 5 -p 83:80 corydm92/apache
+* This can only be done while in a swarm.
+* To see which services are running, use docker service ls
+
+
+This is great, because you can go to either the leaders IP:83 or the works IP:83 and you will be able to see your application. You can also docker rm -f $(docker ps -a -q) on either the worker or the leader, and if a container is ended a new one is automatically rebuilt so the app is not down. It will always maintain the specified number of replicas.
+
+
+To change the number of replicas
+* docker service  scale <name-of-service>=<number-of-new-replicas>
+* docker service scale apache=2
+
+
+To remove a service
+* docker service rm apache
+

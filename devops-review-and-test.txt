@@ -475,7 +475,27 @@ A: A container orchestration tool is when you have multiple containers you have 
 
 
 
+15.) <<<<< What is Docker Swarm?
 
+
+Q: What is Docker Swarm, and what are it's advantages?
+
+
+A: Docker Swarm is a clustering and scheduling tool for Docker containers. With Swarm, IT administrators and developers can establish and manage a cluster of Docker nodes as a single virtual system.
+ 
+* You get the opportunity to monitor the health of containers.
+* Helps you keep a number of specified healthy containers always in the running state.
+
+
+
+
+Q: How would you go about deploying an App using Docker Swarm? Why is this great?
+
+
+A: Containers on the cluster are deployed using services on Docker Swarm. A service is a long-running Docker container that can be deployed to any node worker.
+
+
+This is great, because you can go to either the leaders IP:83 or the works IP:83 and you will be able to see your application. You can also docker rm -f $(docker ps -a -q) on either the worker or the leader, and if a container is ended a new one is automatically rebuilt so the app is not down. It will always maintain the specified number of replicas.
 
 
 
