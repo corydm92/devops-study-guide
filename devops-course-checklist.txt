@@ -15,7 +15,7 @@
 02:17:59 - what is a dockerfile [ done ]
 02:35:55 - introduction to docker volumes [ done ]
 03:18:15 - what is docker swarm [ done ]
-03:34:56 - what is puppet
+03:34:56 - what is puppet [ done ]
 03:57:05 - code basics for puppet
 04:24:35 - what is ansible
 04:51 - introduction to software testing

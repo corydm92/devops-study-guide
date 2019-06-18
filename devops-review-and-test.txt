@@ -499,7 +499,106 @@ This is great, because you can go to either the leaders IP:83 or the works IP:83
 
 
 
+17.) <<<<< Puppet code basics
 
+
+
+
+Q: What are a few puppet components?
+
+
+A: The most basic component of Puppet Code is a resource. A resource describes something about the state of the system, such as a certain user or file should exist, or a package should be installed, etc.
+
+
+resource_type {'resource_name':
+ 
+    attribute => value,
+            ...
+}
+
+
+package { 'nginx':
+    ensure => 'installed',
+}
+
+
+
+
+Q: What is a Manifest?
+
+
+A: Manifests are basically a collection of resource declarations, using the extension .pp
+
+
+Must begin with node default
+* node default{
+* package {'nginx':
+    * ensure => installed,
+    * }
+* file {'/tmp/status.txt':
+    * content => 'Nginx Installed',
+    * mode => '0644',           # permissions
+    * }
+* }
+
+
+
+
+Q: Explain Variables in Puppet
+
+
+A: Variables can be defined at any point in a manifest. The most common types of variables are strings and arrays of strings, but other types are also supported, such as booleans and hashes.
+ 
+ex: 
+ 
+$textVar = 'Test Text!'
+ 
+{file '...':
+    content => $textVar,
+}
+
+
+
+
+Q: Explain Loops in Puppet
+
+
+A: Loops are typically used to repeat a task using different input values. For instance, instead of  creating 10 tasks for installing 10 different packages, you can create a single task and use a loop to repeat the task with all the different packages you want to install.
+ 
+ex:
+ 
+$packages = ['nginx','mysql-server']
+ 
+package {$packages:
+    ensure => installed,
+}
+
+
+
+
+Q: Explain Conditions in Puppet
+
+
+A: Conditionals can be used to dynamically decide whether or not a block of code should be executed, based on a variable or an output from a command, for instance.
+ 
+exec { "Test":
+    command => '/bin/echo apache2 is installed > /tmp/status.txt,
+    onlyif => 'bin/which apache2',
+}
+ 
+* Runs automatically if returns true
+ 
+exec { "Test":
+    command => '/bin/echo apache2 is not installed > /tmp/status.txt,
+    unless => 'bin/which apache2',
+}
+ 
+* Runs automatically if returns false
+
+
+
+
+17.) <<<<< What is Ansible?
 
 
 

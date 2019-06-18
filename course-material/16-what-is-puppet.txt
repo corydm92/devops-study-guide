@@ -1,0 +1,139 @@
+Puppet is an open-source software configuration management tool. it runs on many Unix-like systems as well as on Microsoft Windows, and includes its own declarative language to describe system configuration.
+
+
+Key Features of Puppet
+
+
+* Large User Base
+* Big Open Source Community
+* Documentation
+* Platform Support
+
+
+Puppet Architecture
+
+
+Puppet follows a Master Slave Architecture, the working has been explained in the below diagram.
+
+
+* Slave sends machine metadata or state to master via pull configuration
+    * Master checks whether the state is the same or not
+* Master does analysis on the data, and if any change is needed, sends the required the changes to the slave
+* Slave does the changes, and sends a report back to master, of the changes.
+
+
+Because Puppet nodes have to interact with the master, all the information which is communicated between the master node and the slave nodes are encrypted using SSL certificates. The certificate signing process is as follows.
+
+
+* Slave > Requests for Master Certificate
+* Master > Master Certificate is sent
+* Master > Request for Slave Certificate
+* Slave > Slave Certificate is sent
+    * At this point communication is still not established, even though certificates have been sent
+
+
+On Master server, we have to sign the Slave Certificate in order to authenticate slave to access the Puppet Master. Only then can data transfer begin.
+
+
+Setting up Puppet Master-Slave on AWS
+
+
+* Launch instance of Ubuntu 18.04 AMI in EC2 Management Console
+* Select General purpose t2 free tier instance and click next
+* Set the instances as 2 for one node puppet master setup
+* Click next until you hit Configure Security Group
+* Add a new rule
+    * Type = All TCP
+    * Source = Anywhere
+* Click Review > Launch
+* Create a new Key/Value pair by naming it, then clicking download.
+    * Store this file in a safe place
+
+
+Once you are done, you can remove the filter tags at the top and rename your two instances as "Master" and "Slave".
+
+
+Login to both using Putty
+* Put public IP from AWS into session IP
+* In Connection > SSH > Auth 
+    * Browse to your .ppk and then start
+
+
+< Issues with connection to AWS stopped me here, got error "putty disconnected: no supported authentication methods available". Will figure out later. >
+
+
+Master
+* wget https://apt.puppetlabs.com/puppet-release-bionic.deb
+* sudo dpkg -i puppet-release-bionic.deb
+* sudo apt-get install puppetmaster
+* apt policy puppetmaster
+    * check status
+* sudo systemctl status puppet-master.service
+* vim /etc/default/puppetmaster
+    * -- JAVA_ARGS="-Xms512m -Xmx512m"
+        * 512mb max
+* sudo systtemctl restart puppet-master.service
+* sudo ufw allow 8140/tcp
+    * Allows connection outside of firewall
+
+
+Slave
+* wget https://apt.puppetlabs.com/puppet-release-bionic.deb
+* wget https://apt.puppetlabs.com/puppet-release-bionic.deb
+* sudo dpkg -i puppet-release-bionic.deb
+* sudo apt-get install puppet
+    * Notice on the master we install puppetmaster, here we install puppet
+* sudo systemctl start puppet
+* sudo systemctl enable puppet
+    * Allows puppet to start on reboot
+
+
+Master
+* sudo puppet cert list
+    * Lists the certificate sent by the slave (see Puppet Architecture)
+* sudo puppet sign <ip-from-list>
+    * Alternatively, sudo puppet sign --all
+
+
+// Change Code
+sudo mkdir -p /etc/puppet/code/environments/production/manifests
+sudo nano /etc/puppet/code/environments/production/manifests/site.pp
+file {'/tmp/it_works.txt':                                                        # resource type file and filename
+    ensure => present,                                                              # make sure it exists
+    mode => '0644',                                                                    # file permissions
+    content => "iIt works on ${ipaddress_eth0}!\n",        # print the eth0 IP fact
+}
+
+
+* sudo systemctl restart puppet-master
+
+
+Slave
+* sudo puppet agent --test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
