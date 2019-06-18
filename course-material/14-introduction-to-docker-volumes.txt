@@ -1,0 +1,104 @@
+Docker Volumes are used to persist data across the lifetime of a container.
+
+
+Imagine you have a website in a container. The container is having problems, so you delete the container and create a new one from an existing image. The problem is when you delete the container, you delete the changes to the website.
+
+
+Basically hosts the storage outside the container and maps it to inside the container. The storage is there on the host system rather than inside the container.
+
+
+Bind Mount
+* docker run -it -v /home/ubuntu/dockerfile:/app -d ubuntu
+* -v is to bind a volume
+    * the first path is the directory of the files you want to put inside your container
+    * The second path after the : is where inside the container you want these files to go.
+* These files are not actually copied to the container, but mirrored. So any changes to the directory on your local computer will reflect on the docker container.
+* Disadvantage: The file path must not change. For instance, all your files are mapped using a linux system. If someone downloads your image from Docker Hub on a Windows computer, the file path will not be the same.
+
+
+Docker Volume
+* Syntax: docker volume create test
+* Once you have a volume, use the following syntax to attach to a container.
+    * docker run -it --mount source=<name-of-volume>,target=<path-to-container-directory> -d <image-name>
+    * docker run -it --mount source=test,target=/app -d ubuntu
+* Once we exec into the container we made, we can make changes to that /app folder by adding files etc. If we then create a new container using the same mount source=<name-of-volume>, all containers made using the volume we have chosen will have these files. Any changes made in this directory will reflect across all containers. 
+    * Note: When specifying the target on a new container, it does not have to be the same as the original. The only thing that has to be the same is the source variable for the container.
+* You can move files into containers from your local file system using the following syntax (very useful for pushing files to volumes):
+    * docker cp <file-path> <container-id>:<file-path-in-container>
+    * docker cp ./2.html 519049c974b4:/app
+
+
+What is a Monolithic Application?
+
+
+A monolithic application is a single-tiered software application in which different components are combined into a single program which resides in a single platform. If one component is written in a language like Java, the rest have to be written in Java.
+* ex: Uber App
+    * Notifications
+    * Mail
+    * Payments
+    * Location Services
+    * Customer Service
+    * Passenger Management
+
+
+Disadvantages of a Monolithic Application
+
+
+* Application is large and complex to understand
+* Entire Application has to be re-deployed on an application update
+* Bug in any module, can bring down entire application
+* Has a barrier to adopting new technologies
+
+
+What are Microservices?
+
+
+Microservices are a software development architectural style that structures an application as a collection of loosely coupled services. Each component is segregated and functions independently, while still working together.
+* ex: If you get an Uber but don't pay, you can't book a cab.
+    * These two components must interact with each other.
+* They communicate in other ways, like HTTP or JSON.
+* This way it reduces downtime of the application if one component needs to be fixed/updated.
+    * New payment method
+    * Only download the payment module to make changes
+        * Update those changes
+    * Redeploy the payment module
+
+
+Advantages of Microservices
+
+
+* Application is distributed hence easy to understand
+* The code of only the Microservice which is supposed to be updated is changed
+* Bug in one service does not affect other services
+* No barrier to any specific technology
+
+
+What is Docker Compose?
+
+
+Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to  configure your application's services. Then, with a single command, you create and start all the services from your configuration. run docker-compose up and compose starts and runs your entire app.
+
+
+docker-compose up -d
+
+
+Microservices are actually not launched through docker-compose, they are put on something called a container orchestration tool. A container orchestration tool is when you have multiple containers you have launched, and one container goes down or is changed to a stop state. The orchestration tool will create another one in place, without the end user ever knowing what happened.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
