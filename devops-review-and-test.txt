@@ -598,7 +598,123 @@ exec { "Test":
 
 
 
-17.) <<<<< What is Ansible?
+18.) <<<<< What is Ansible?
+
+Q: What is Ansible?
+
+
+A: Ansible is an open-source configuration management tool.
+
+
+
+https://www.evernote.com/shard/s457/res/6a2be3b4-28bf-4d13-b1c3-16fe3e9203a0
+
+
+
+
+Q: What is ansible-playbook?
+
+
+A: An organized unit of scripts that defines work for a server configuration written in YAML.
+
+
+ex:
+
+
+---
+ - hosts: slave1
+   sudo: yes
+   name: play1
+   tasks:
+    - name: Install Apache
+      apt: name: apache2 state=latest
+
+
+Q: Walk me through the setup of an ansible-playbook YAML file, and setup with a slave.
+
+
+A:
+
+
+ Summary
+
+
+Create first_playbook.yml using on your Master
+* sudo apt install ansible
+* sudo nano <playbookname>
+    * Must begin with ---
+    * Must specify hosts
+        * "hosts" can have one host or a group of hosts from an inventory file
+            * /etc/ansible/hosts
+    * Each Play is like a dictionary and has name, hosts, tasks. Order doesn't matter.
+    * The Playbook is like a dictionary of plays.
+    * Similarly tasks are nothing but lists Denoted by -
+    * For tasks ordered collection. Position of entry matters.
+        * First entry gets performed first.
+ 
+
+
+Make sure you have your ansible host file configured.
+* sudo nano /etc/ansible/hosts and add this at the bottom 
+* The slave1 / slave2 are the host names and can be configured as long as they match.
+* [production] #specifies a tag, to be used if you would like in the YAML file
+* <name-of-host-from-yaml> ansible_ssh_host=<public-ip-address>
+* slave2 ansible_ssh_host=34.214.130.35
+
+
+
+
+Q: How do you connect Masters and Slaves?
+
+
+A: 
+
+
+Master
+* cd .ssh
+* cat id_rsa.pub
+    * Copy the ssh-rsa text
+    * If you don't have id_rsa.pub, you need to create SSH Key. Follow EVERY step.
+        * https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+
+Slave
+* cd .ssh
+* sudo nano authorized_keys
+    * Paste in the copied text on a new line.
+
+
+Master
+* ssh ubuntu@<ip-or-dns>
+* exit
+    * Leave the slave environment
+* sudo nano /etc/ansible/hosts
+    * Scroll down and add 
+    * slave<number> ansible_ssh_host=<slave-public-ip>
+* ansible -m ping all
+    * Not necessary, but useful.
+* Now you can make changes to your play.yml file for the new host, just be it's the same host name you gave it in the /etc/ansible/host file.
+
+
+
+
+Q: How would you add a script from your master to your play.yml?
+
+
+A:
+* cd ~/ansible
+* nano hello.sh
+    * #!/bin/sh
+    * echo hello world > /var/www/html/1.html
+* nano play.yml
+    * - name: Adding Website
+    *   script: hello.sh
+* ansible-playbook play.yml
+ 
+Any time you make changes to that script file, and run ansible-playbook, the changes are updated on the slave that has the file.
+
+
+
 
 
 

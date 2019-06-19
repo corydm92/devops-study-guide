@@ -1,0 +1,196 @@
+* Ansible is an open-source configuration management tool
+* Used for configuration management
+* Can solve wide range of automation challenges
+
+
+Solves two issues:
+* Time issue by automation
+* No room for error
+    * Happens so fast, and is automated.
+
+
+What is Ansible Playbook?
+
+
+* An organized unit of scripts 
+* Defines work for a server configuration
+* Written in YAML
+
+
+Ansible Playbook Structure
+
+
+
+https://www.evernote.com/shard/s457/res/bcd2cdf5-b990-482f-863f-41c97290a906
+
+
+
+* Has a number of plays
+* Play contains Task
+* Tasks calls core or custom modules
+* Handler gets triggered from notify and executed at the end only once
+
+
+Creating Ansible Playbook-Example
+
+
+Say, we want to create a playbook with two plays with following tasks.
+
+
+* Play1
+    * Execute a command in host1
+    * Execute a script in host1
+
+
+* Play2
+    * Execute a script in host2
+    * Install nginx in host2
+
+
+'---'                                 #Start YAML file with --- (no quotes)
+-      hosts: host1        # Play 1
+        sudo: yes
+        name: Play 1
+        tasks:
+                - name: Execute command 'Date'
+                   command: date
+                - name: Execute script on server
+                   script: test_script.sh
+
+
+-      hosts: host2        # Play 2
+        name: Play 2
+        sudo: yes
+        tasks:
+                - name: Execute script on server
+                   script: test_script.sh
+                - name: Install nginx
+                   apt: name=nginx state=latest
+        
+* Must start with ---
+* - hosts is the start of the play
+* tasks
+    * name is the name of the task
+        * Does not get executed, can be any string
+    * command
+        * What command has to be executed in the terminal
+    * script
+        * Script that you want to run
+* Every task must begin with a - name, followed by what that task will be doing
+* If you want to use sudo in your commands, specify sudo: yes
+* apt used for linux or Cent OS installation
+
+
+Summary
+* Must begin with ---
+* Must specify hosts
+    * "hosts" can have one host or a group of hosts from an inventory file
+        * /etc/ansible/hosts
+* Each Play is like a dictionary and has name, hosts, tasks. Order doesn't matter.
+* The Playbook is like a dictionary of plays.
+* Similarly tasks are nothing but lists Denoted by -
+* For tasks ordered collection. Position of entry matters.
+    * First entry gets performed first.
+
+
+Create first_playbook.yml using 
+* sudo nano <playbookname>
+
+
+In our terminal
+
+
+FIRST
+* Make sure you have your ansible host file configured.
+    * sudo nano /etc/ansible/hosts and add this at the bottom 
+    * The slave1 / slave2 are the host names and can be configured as long as they match.
+    * [production]
+    * slave1 ansible_ssh_host=34.221.200.203
+    * slave2 ansible_ssh_host=34.214.130.35
+
+
+* mkdir ansible && cd ansible
+* nano play1.yaml
+    * --- 
+    *  - hosts: slave1
+    *    name: play1
+    *    sudo: yes
+    *    tasks: 
+    *     - name: Install Apache
+    *     - apt: name=apache2 state=latest
+* ansible ping -m slave1
+* ansbile-playbook play.yml
+
+
+To add a host, create a new machine on AWS and run:
+
+
+New Slave
+* sudo apt-get update
+* sudo apt-get python
+
+
+Master
+* cd .ssh
+* cat id_rsa.pub
+    * Copy the ssh-rsa text
+    * If you don't have id_rsa.pub, you need to create SSH Key. Follow EVERY step.
+        * https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+
+New Slave
+* cd .ssh
+* sudo nano authorized_keys
+    * Paste in the copied text on a new line.
+
+
+Master
+* ssh ubuntu@<ip-or-dns>
+
+
+You now have access to the slave on your master.
+
+
+Master
+* exit
+    * Leave the slave environment
+* sudo nano /etc/ansible/hosts
+    * Scroll down and add 
+    * slave2 ansible_ssh_host=<slave-public-ip>
+* ansible -m ping all
+* cd
+* cd ansible
+* sudo nano play.yaml
+
+
+play.yaml
+ - hosts: slave2
+   sudo: yes
+   name: play2
+   tasks:
+    - name: Install  Apache
+       apt: name=apache2 state=latest
+
+
+Master
+* ansible-playbook play.yml
+
+
+Adding Scripts
+
+
+* cd ~/ansible
+* nano hello.sh
+    * #!/bin/sh
+    * echo hello world > /var/www/html/1.html
+* nano play.yml
+    * - name: Adding Website
+    *   script: hello.sh
+* ansible-playbook play.yml
+
+
+Any time you make changes to that script file, and run ansible-playbook, the changes are updated on the slave that has the file.
+
+
+This way, if you have 100 servers you can change files very quick. It would be impossible to do this manually, as time is of the essence.
+

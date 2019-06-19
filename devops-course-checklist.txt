@@ -16,8 +16,8 @@
 02:35:55 - introduction to docker volumes [ done ]
 03:18:15 - what is docker swarm [ done ]
 03:34:56 - what is puppet [ done ]
-03:57:05 - code basics for puppet
-04:24:35 - what is ansible
+03:57:05 - code basics for puppet [ done ]
+04:24:35 - what is ansible [ done ]
 04:51 - introduction to software testing
 04:57:30 - introduction to selenium
 05:26:41 - how to create automated tests in selenium
