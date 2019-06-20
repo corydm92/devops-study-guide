@@ -1,0 +1,117 @@
+What is Selenium?
+ 
+Selenium is a portable framework for testing web applications. Selenium provides a playback tool for authoring functional tests without the need to learn a new test scripting language.
+ 
+Components of Selenium
+ 
+But only the Selenium Core could not suffice all the use cases of testing. Hence, a suite of Selenium components was developed for different purposes.
+ 
+* Selenium
+    * Selenium RC
+        * Due to same origin policy, testers had to install Selenium Core and the web server on their local system
+        * This was done to keep the domain same for the Selenium Core and the web application to be tested.
+        * Selenium RC is a web server, which acts as an HTTP proxy.
+        * It tricks the OS into believing both Selenium Core and the website to be tested are on the same domain.
+        * This system was also known as Selenium 1.
+    * Selenium IDE
+        * Selenium IDE was originally created as a Firefox extension.
+        * It could automate tests using the record and playback feature.
+        * The intention behind creating this component was to increase the speed of creating test cases in Selenium.
+    * Selenium Grid
+        * Selenium Grid enables parallel testing of applications on multiple machines.
+        * It was primarily created to minimize the time taken in executing test cases.
+        * It can be used across multiple browsers and OS.
+        * It can also be used to break down a huge test suite among many computers testing the same application
+    * WebDriver
+        * Selenium WebDriver was the first cross-platform testing  framework that could control the browser from the OS level.
+        * It was developed in 2006, when web applications and browsers were becoming more powerful and restrictive with JavaScript programs like Selenium Core.
+        * It was better than Selenium IDE and RC.
+        * It controls the browser by directly communicating with it.
+ 
+What is Maven?
+ 
+Maven is a build automation tool used primarily for Java projects. Maven addresses two aspects of building software: first, it describes how a software is built and, second, it describes its dependencies.
+ 
+Why do we need Maven?
+ 
+* Maven is used to download dependencies for a software program.
+* Dependencies to be downloaded are included inside a POM file.
+* Once the dependencies are added in the POM file, simply save the project and all the dependencies will automatically be downloaded.
+ 
+Setting up Selenium with Maven
+ 
+* Install Java
+* Download and Install Eclipse for Developers
+* Create a Maven Project
+* Acquire Maven Dependencies for Selenium
+ 
+sudo apt install default-jre                     # Installs Java on Linux 
+sudo snap install --classic eclipse        # Installs Eclipse on our system (we use Eclipse because it comes with Maven)
+ 
+Inside of the Eclipse IDE
+* File > New > Maven Project
+    * If Maven Project is not available, go to other at the bottom and type in Maven.
+* Choose your project directory
+    * I chose default
+* Click next when it asks for archetype (don't change anything)
+* Give any Group Id and Artifact Id
+ 
+You will see on the Project Explorer Pane on the left side the new project, and Maven dependencies.
+ 
+
+https://www.evernote.com/shard/s457/res/8df3b0c3-3f52-4b98-9dce-95379a05a600
+
+ 
+Now inside the pom.xml we need to specify our dependencies. The tutorial uses selenium-java, selenium-server, selenium-api, and selenium-chrome-driver. 
+* You can find other dependencies at https://mvnrepository.com/artifact/org.seleniumhq.selenium
+ 
+ex:
+  <dependencies>
+  
+    <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>3.8.1</version>
+          <scope>test</scope>
+    </dependency>
+    
+    <dependency>    
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>3.141.59</version>
+    </dependency>
+ 
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-server</artifactId>
+        <version>3.141.59</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-api</artifactId>
+        <version>3.141.59</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-chrome-driver</artifactId>
+        <version>3.141.59</version>
+    </dependency>
+    
+  </dependencies>
+ 
+Once you have all of your dependencies saved in the pom.xml you can see them in the Maven Dependencies directory. Verify your dependencies, then navigate to your projects src/main/java folder and open up App.java.
+ 
+I was getting an error about using JRE 1.5 instead of 11. To fix:
+* Right click on project directory > properties > Java Compiler
+    * Compiler Compliance Level > 11
+ 
+Now, we start writing our imports. We import the following:
+ 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+* With testng, there was an error with no library found. Follow this guide, then once you reboot click on the icon next to the import and click "add library.
+* https://www.ecanarys.com/Blogs/ArticleID/169/How-to-Install-TestNG-framework-Step-by-Step-installation-process

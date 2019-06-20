@@ -18,10 +18,10 @@
 03:34:56 - what is puppet [ done ]
 03:57:05 - code basics for puppet [ done ]
 04:24:35 - what is ansible [ done ]
-04:51 - introduction to software testing
-04:57:30 - introduction to selenium
-05:26:41 - how to create automated tests in selenium
-05:41:42 - features of testng
+04:51 - introduction to software testing [ done ]
+04:57:30 - introduction to selenium [ done ]
+05:26:41 - how to create automated tests in selenium [ done ]
+05:41:42 - features of testng [ done ]
 05:44:45- annotations in testng
 06:50:21 - continuous integration in jenkins
 07:46:32 - why kubernetes

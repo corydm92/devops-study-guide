@@ -1,0 +1,33 @@
+Creating Automated Tests
+ 
+There are three steps to executing a web test:
+* Find the element on the web browser
+* Perform an action on the found element(s)
+* Test and create a test report with the results
+    * Find element, Perform action, Test & Report
+ 
+Find textbox
+Type email ID
+Test if login is successful and report
+ 
+Finding Elements in Selenium
+ 
+An element can be found on a web page using the following selectors:
+* ID
+* Name
+* Class Name
+* Tag Name
+* Link Text
+* Partial Link Text
+* XPATH
+ 
+Syntax: WebElement button = driver.findElement(By.class("CwaK9"));
+ 
+Performing Action on Elements
+ 
+The next step is taking an action. For that, one can try the following options:
+* click(): Used to click on the link and wait for page load to complete before proceeding to the next command
+* sendKeys(): Used to enter values onto text boxes
+* clear(): Used to clear text boxes of its current  value
+* submit(): WebDriver will automatically trigger the submit function of the form where that element belongs to
+    * WebElement button = driver.findElement(By.class("CwaK9")).click();

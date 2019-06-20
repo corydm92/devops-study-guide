@@ -716,7 +716,175 @@ Any time you make changes to that script file, and run ansible-playbook, the cha
 
 
 
+19.) <<<<< Introduction to Software Testing
 
+
+Q: What is Software Testing?
+
+
+A: Software testing is defined as an activity to check whether the actual results match with the expected results to ensure that the software system is defect free.
+
+
+
+
+Q: What are the types of Software Testing?
+
+
+A: 
+Automated Testing
+* Test cases are executed automatically
+* More accurate
+* More suitable when test cases are run repeatedly
+* Suitable for scenarios when testing is functionality based
+ 
+Manual Testing
+* Test cases are executed manually
+* Less accurate
+* More suitable when test cases are supposed to run only once or twice
+* More suitable when testing is for user experience
+
+
+
+
+Q: What are some of the tools used in Software Testing?
+
+
+A: 
+* Selenium
+* Appium
+* Cucumber
+* Test Studio
+
+
+
+
+20.) <<<<< Introduction to Selenium
+
+
+Q: What is Selenium, and how does it differ from TestNG?
+
+
+A: Selenium is a portable framework for testing web applications. Selenium provides a playback tool for authoring functional tests without the need to learn a new test scripting language. Selenium is used for finding the element, for doing any actions.
+
+
+
+
+Q: What are the components of Selenium?
+
+
+A: 
+* Selenium RC
+    * Due to same origin policy, testers had to install Selenium Core and the web server on their local system
+    * This was done to keep the domain same for the Selenium Core and the web application to be tested.
+    * Selenium RC is a web server, which acts as an HTTP proxy.
+    * It tricks the OS into believing both Selenium Core and the website to be tested are on the same domain.
+    * This system was also known as Selenium 1.
+* Selenium IDE
+    * Selenium IDE was originally created as a Firefox extension.
+    * It could automate tests using the record and playback feature.
+    * The intention behind creating this component was to increase the speed of creating test cases in Selenium.
+* Selenium Grid
+    * Selenium Grid enables parallel testing of applications on multiple machines.
+    * It was primarily created to minimize the time taken in executing test cases.
+    * It can be used across multiple browsers and OS.
+    * It can also be used to break down a huge test suite among many computers testing the same application
+* WebDriver
+    * Selenium WebDriver was the first cross-platform testing  framework that could control the browser from the OS level.
+    * It was developed in 2006, when web applications and browsers were becoming more powerful and restrictive with JavaScript programs like Selenium Core.
+    * It was better than Selenium IDE and RC.
+    * It controls the browser by directly communicating with it.
+
+
+
+
+Q: What is Maven?
+
+
+A: Maven is a build automation tool used primarily for Java projects. Maven addresses two aspects of building software: first, it describes how a software is built and, second, it describes its dependencies.
+
+
+
+
+Q: Why do we need Maven?
+
+
+A: 
+* Maven is used to download dependencies for a software program.
+* Dependencies to be downloaded are included inside a POM.xml file.
+* Once the dependencies are added in the POM file, simply save the project and all the dependencies will automatically be downloaded.
+
+
+
+
+21.) <<<<< Create Automated Tests in Selenium
+
+
+Q: What are the steps to executing a web test?
+
+
+A: 
+* Find the element on the web browser
+* Perform an action on the found element(s)
+* Test and create a test report with the results
+    * Find element, Perform action, Test & Report
+
+
+
+
+Q: How do you find elements in Selenium?
+
+
+A: An element can be found on a web page using the following selectors:
+* ID
+* Name
+* Class Name
+* Tag Name
+* Link Text
+* Partial Link Text
+* XPATH
+ 
+Syntax: WebElement button = driver.findElement(By.class("CwaK9"));
+
+
+
+
+Q: How do you perform actions on these elements?
+
+
+A: Using these methods, we can automate user interaction with elements in the browser.
+
+
+* click(): Used to click on the link and wait for page load to complete before proceeding to the next command
+* sendKeys(): Used to enter values onto text boxes
+* clear(): Used to clear text boxes of its current  value
+* submit(): WebDriver will automatically trigger the submit function of the form where that element belongs to
+    * WebElement button = driver.findElement(By.class("CwaK9")).click();
+
+
+
+
+22.) <<<<< Features of TestNG
+
+
+Q: What is TestNG, and how does it differ from Selenium?
+
+
+A: TestNG is an open-source automated testing framework, where NG means "Next Generation". It is a testing framework inspired from JUnit and NUnit, but introducing some new functionalities makes it more powerful and easier to use. TestNG performs a check to return whether a test was right or wrong.
+
+
+
+
+Q: What are some of the features of TestNG?
+
+
+A:  
+* TestNG annotations are easy to create test cases. 
+* Test cases can be grouped and prioritized more easily.
+* It supports parameterization.
+* It supports data-driven testing using DataProviders.
+* It generates HTML reports.
+* Parallel test execution is possible.
+* it readily supports integration with other tools like plug-ins like Eclipse IDE, build tools Ant, Maven etc.
 
 
 

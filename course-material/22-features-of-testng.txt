@@ -1,0 +1,19 @@
+Testing & Reporting in Selenium Using TestNG
+ 
+Selenium is used for finding the element, for doing any actions.
+ 
+TestNG performs a check to return whether a test was right or wrong
+ 
+What is TestNG?
+ 
+TestNG is an open-source automated testing framework, where NG means "Next Generation". It is a testing framework inspired from JUnit and NUnit, but introducing some new functionalities makes it more powerful and easier to use.
+ 
+Features of TestNG?
+ 
+* TestNG annotations are easy to create test cases. 
+* Test cases can be grouped and prioritized more easily.
+* It supports parameterization.
+* It supports data-driven testing using DataProviders.
+* It generates HTML reports.
+* Parallel test execution is possible.
+* it readily supports integration with other tools like plug-ins like Eclipse IDE, build tools Ant, Maven etc.

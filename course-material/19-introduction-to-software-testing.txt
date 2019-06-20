@@ -1,0 +1,27 @@
+Software testing is defined as an activity to check whether the actual results match with the expected results to ensure that the software system is defect free.
+
+
+Types of Software Testing
+
+
+Automated Testing
+* Test cases are executed automatically
+* More accurate
+* More suitable when test cases are run repeatedly
+* Suitable for scenarios when testing is functionality based
+
+
+Manual Testing
+* Test cases are executed manually
+* Less accurate
+* More suitable when test cases are supposed to run only once or twice
+* More suitable when testing is for user experience
+
+
+Automated Testing Tools
+
+
+* Selenium
+* Appium
+* Cucumber
+* Test Studio
