@@ -4,4 +4,4 @@ course-material >>> Personal notes I've been taking as I follow the course, used
 
 devops-course-checklist.txt >>> Overall course plan.
 
-devops-review-and-test.txt >>> Personal test questions for review before.
+devops-review-and-test.txt >>> Personal test questions for review.
