@@ -889,7 +889,61 @@ A:
 
 
 
+23.) <<<<< Annotations in TestNG
 
+
+Q: What are Annotations in TestNG (Also used in Java)?
+
+
+A: Annotations in TestNG are used to decide the flow of the program. There are a lot of annotations in TestNG, we will focus on the most used ones and following are the same:
+* @BeforeSuite: The annotated method will be run only once before all tests in this suite have run
+* @BeforeTest: The annotated method will be run before any test method belonging to the classes inside the <test> tag is run.
+* @BeforeClass: The annotated method will be run only once before the first test method in the current class is invoked.
+* @BeforeMethod: The annotated method will be run before each test method.
+    * This is before your test method is run.
+* @AfterMethod: The annotated method will be run after each test method.
+    * This is after your test method is run.
+* @Test: This marks a class or method as part of the test.
+* @AfterTest: The annotated method only runs after the test suite.
+    * This is because the @BeforeTest only runs once.
+
+
+
+
+Q: What is Continuous Testing?
+
+
+A: Continuous Testing is the process of executing automated tests as part of the software delivery pipeline in order to obtain feedback on the business risks associated with a software release candidate as rapidly as possible.
+
+
+* Commit on github
+    * Triggers Jenkins
+        * Deploys To Test Server
+            * Test Server runs tests on this application
+            * Get a failure or pass message
+                * This is the Continuous Testing part of the DevOps Life cycle.
+                * Failure means you rewrite your code
+                * Feedback is given back to developer through Continuous Monitoring
+            * Get a Pass
+                * Set a trigger for a manager to review, then pushes to production
+                * On success, can be automatically pushed to production
+
+
+Products are built with their respective test suites while the features are being developed.
+ 
+Production Server
+* Product Features
+    * Feature A
+ 
+Testing Server
+* Test Suite
+    * Test suite for Feature A
+ 
+If we have a new Feature, lets call it Feature B, we need a new Test Suite for Feature B
+ 
+When Developer pushes Feature A, Feature A gets tested. Same with Feature B.
+ 
+It is very important to update your Testing Suites with all the New Feature Tests as and when the new Feature is being developed.
 
 
 

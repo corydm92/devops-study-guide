@@ -1,0 +1,286 @@
+Annotations in TestNG
+ 
+Annotations in TestNG are used to decide the flow of the program. There are a lot of annotations in TestNG, we will focus on the most used ones and following are the same:
+* @BeforeSuite: The annotated method will be run only once before all tests in this suite have run
+* @BeforeTest: The annotated method will be run before any test method belonging to the classes inside the <test> tag is run.
+* @BeforeClass: The annotated method will be run only once before the first test method in the current class is invoked.
+* @BeforeMethod: The annotated method will be run before each test method.
+    * This is before your test method is run.
+* @AfterMethod: The annotated method will be run after each test method.
+    * This is after your test method is run.
+* @Test: This marks a class or method as part of the test.
+* @AfterTest: The annotated method only runs after the test suite.
+    * This is because the @BeforeTest only runs once.
+
+
+This is the code for two tests and output all of these annotations in a single Java class.
+
+
+public class App 
+{
+
+
+//    WebDriver driver;
+    @Test
+    public void test() {
+        System.out.println("@Test - test is executing");
+    }
+    
+    @BeforeTest
+    public void before() {
+        System.out.println("@BeforeTest - this is before the test");
+    }
+    
+    @BeforeMethod
+    public void beforemethod() {
+        System.out.println("@BeforeMethod - this is before the method is executed");
+    }
+    
+    @BeforeClass
+    public void beforeclass() {
+        System.out.println("@BeforeClass - this is before the class is executed");
+    }
+    
+    @Test
+    public void test2() {
+        System.out.println("@Test2 - test2 is executing");
+    }
+    
+    @BeforeSuite
+    public void beforesuite() {
+        System.out.println("@BeforeSuite - this is before the suite is executed");
+    }
+    
+    @AfterMethod
+    public void aftermethod() {
+        System.out.println("@AfterMethod - this is after the method has executed");
+    }
+    
+}
+
+
+[RemoteTestNG] detected TestNG version 6.14.3
+@BeforeSuite - this is before the suite is executed
+@BeforeTest - this is before the test
+@BeforeClass - this is before the class is executed
+@BeforeMethod - this is before the method is executed
+@Test - test is executing
+@AfterMethod - this is after the method has executed
+@BeforeMethod - this is before the method is executed
+@Test2 - test2 is executing
+@AfterMethod - this is after the method has executed
+PASSED: test
+PASSED: test2
+
+
+Creating Our First Test Case
+
+
+* Open the Intellipaat website (www.intellipaat.com)
+* Enter "DevOps" term and click search
+* On the search page, check for "DevOps Certification Course". If it exists, click on the course
+* On the course page, verify if in the page "DevOps Certification Training" is present as the header.
+
+
+First, we need to set our web driver. We can do that with:
+
+
+public void test() {
+        System.setProperty("webdriver.chrome.driver","/home/cory/Desktop/devops-study-guide/automate-tests/chromedriver");
+    }
+
+
+The setProperty(key,value) is made possible by our imports:
+
+
+package test_intelipaat.test1;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.*;
+
+
+* If you get an error that says something like "This version of chromedriver only supports Chrome version x", go to chrome and click on help > about to see what version of chrome you are running. Then, go to https://sites.google.com/a/chromium.org/chromedriver/downloads to pick out the driver that matches your current chrome version.
+
+
+public void test() {
+        System.setProperty("webdriver.chrome.driver","/home/cory/Desktop/devops-study-guide/automate-tests/chromedriver");
+        driver = new ChromeDriver();
+        driver.get("https://www.intellipaat.com");
+//        driver.findElement(By.className("t-search-input")).click();
+//        driver.findElement(By.className("t-search-input")).sendKeys("DevOps");
+        driver.findElement(By.xpath("//*[@id=\"slider-strip2\"]/div[2]/div[1]/form/div/input[2]")).click();
+        driver.findElement(By.xpath("//*[@id=\"slider-strip2\"]/div[2]/div[1]/form/div/input[2]")).sendKeys("DevOps");
+        driver.findElement(By.xpath("//*[@id=\"frontpagesubmitsearch\"]")).click();
+        driver.findElement(By.xpath("//*[@id=\"content\"]/div/div[2]/div[1]/div/div[1]/a[2]/img")).click();
+        
+        String actualTitle = "AWS Certified DevOps Certification Training";
+        String actualValue = driver.findElement(By.xpath("//*[@id=\"courseSubMain\"]/div/div[1]/h1")).getText();
+        
+        Assert.assertEquals(actualValue, actualTitle);
+        
+        System.out.println("Test 1 executed");
+    }
+
+
+To find directory of project, right click on project > show in > system explorer
+* /home/cory/eclipse-workspace
+* Here you can access your Java file, as well as see your test-output folder
+    * test-output has an index.html you can load in your browser
+
+
+Running a Headless Test in Selenium
+
+
+Headless mode means it doesn't open the browser, or use any GUI. It runs in the background.
+* This is useful for running the test in a CLI
+
+
+What we do is we change
+
+
+driver = new chromeDriver()
+
+
+to 
+
+
+ChromeOptions options = new ChromeOptions()
+options.addArguments("headless")
+driver = new chromeDriver(options)
+
+
+When automating, we get an error saying there is an element in the way of a click. 
+* One way to fix is to remove the click, and have an enter key press.
+    *         driver.findElement(By.xpath("//*[@id=\"slider-strip2\"]/div[2]/div[1]/form/div/input[2]")).sendKeys("DevOps" + Keys.ENTER);
+* Second way is to tell the options to maximize the screen size, even though it is running in the background.
+    * driver.get("https://www.intellipaat.com");
+    *         driver.manage().window().maximize();
+
+
+Adding the following will close the window when the test is done running.
+* driver.quit()
+
+
+At the end, our class looks like this:
+
+
+package test_intelipaat.test1;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.*;
+import org.testng.Assert;
+
+
+/**
+ * Hello world!
+ *
+ */
+public class App {
+
+
+    WebDriver driver;
+    
+    
+    @Test
+    public void test() {
+        System.setProperty("webdriver.chrome.driver","/home/cory/Desktop/devops-study-guide/automate-tests/chromedriver");
+        
+        
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        driver = new ChromeDriver(options);
+        
+        driver.get("https://www.intellipaat.com");
+        driver.manage().window().maximize();
+        
+//        driver.findElement(By.className("t-search-input")).click();
+//        driver.findElement(By.className("t-search-input")).sendKeys("DevOps");
+        driver.findElement(By.xpath("//*[@id=\"slider-strip2\"]/div[2]/div[1]/form/div/input[2]")).click();
+        driver.findElement(By.xpath("//*[@id=\"slider-strip2\"]/div[2]/div[1]/form/div/input[2]")).sendKeys("DevOps" + Keys.ENTER);
+//        driver.findElement(By.xpath("//*[@id=\"frontpagesubmitsearch\"]")).click();
+        driver.findElement(By.xpath("//*[@id=\"content\"]/div/div[2]/div[1]/div/div[1]/a[2]/img")).click();
+        
+        String actualTitle = "AWS Certified DevOps Certification Training";
+        String actualValue = driver.findElement(By.xpath("//*[@id=\"courseSubMain\"]/div/div[1]/h1")).getText();
+        
+        Assert.assertEquals(actualValue, actualTitle);
+        
+        System.out.println("Test 1 executed");
+        
+    }
+
+
+    @AfterTest
+    public void closeChrome() {
+        driver.quit();
+    }
+        
+}
+
+
+Introduction to Continuous Testing
+
+
+Continuous Testing is the process of executing automated tests as part of the software delivery pipeline in order to obtain feedback on the business risks associated with a software release candidate as rapidly as possible.
+
+
+* Commit on github
+    * Triggers Jenkins
+        * Deploys To Test Server
+            * Test Server runs tests on this application
+            * Get a failure or pass message
+                * This is the Continuous Testing part of the DevOps Life cycle.
+                * Failure means you rewrite your code
+                * Feedback is given back to developer through Continuous Monitoring
+            * Get a Pass
+                * Set a trigger for a manager to review, then pushes to production
+                * On success, can be automatically pushed to production
+
+
+Products are built with their respective test suites while the features are being developed.
+
+
+Production Server
+* Product Features
+    * Feature A
+
+
+Testing Server
+* Test Suite
+    * Test suite for Feature A
+
+
+If we have a new Feature, lets call it Feature B, we need a new Test Suite for Feature B
+
+
+When Developer pushes Feature A, Feature A gets tested. Same with Feature B.
+
+
+It is very important to update your Testing Suites with all the New Feature Tests as and when the new Feature is being developed.
+
+
+How do you integrate Continuous Testing with the DevOps Life Cycle?
+
+
+* In your Eclipse IDE, right click the test file you would like to export and > export. 
+* If your in Java, click Runable JAR File, then click next
+* Click Finish
+    * All your dependencies will be packaged into the JAR file
+    * If you get warnings, it doesn't mean your tests are broken.
+* Now you have a workable JAR, now you just have to push it to your Testing Server.
+
+
+In your terminal, you can run this file with
+* java -jar <filename>.jar
+    
+Whatever system you are running tests on, you must specify your chromedriver file to the path in your current system.
+* Developed on Windows: C:\\Users\\intellipaat\\Downloads\\chrome2\\chromedriver.exe
+* On Ubuntu Image: /home/ubuntu/chromedriver
