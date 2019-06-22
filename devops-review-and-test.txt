@@ -949,170 +949,64 @@ It is very important to update your Testing Suites with all the New Feature Test
 
 
 
+24.) <<<<< Continuous  Integration in Jenkins
 
 
 
 
 
+Q: What is Continuous Integration?
 
 
+A: The process of having shorter release cycles (sometimes several times a day) i.e. creating small features and integrating them to the source code, and employing automated build and test processes for quicker feedback.
 
 
 
 
+Q: What were some of the problems before Continuous Integration?
 
 
+A: 
+* Infrequent Commits led to bigger releases in one go leading to complex integration
+* Manual Testing took a lot of time
+* Feedback took a lot of time to reach Developer
+* High risk and uncertainty
 
 
 
 
+Q: What are some of the advantages of Continuous Integration?
 
 
+A: 
+* Frequent Commits hence smaller feature release
+* Automated Build and Testing
+* Instant Feedback to Developer
+* Low risk and Faster Delivery
 
 
 
 
+Q: What is Jenkins?
 
 
+A: Jenkins is an open source automation server written in Java. Jenkins helps to automate the non-human part of the software development process, with continuous integration and facilitating technical aspects of continuous delivery.
 
 
 
 
+Q: What is the Jenkins Master Worker Architecture?
 
 
+A:
+* Jenkins Master-Worker architecture is important to accomplish Continuous Deployment
+* Jenkins Workers don't need to have Jenkins installed on them
+* Useful in scenarios where it distributes the load when we have parallel and complex builds
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Jenkins becomes your Master server, Testing server becomes the Worker server for Jenkins. Similarly, your Production server would become a Worker server for Jenkins.
+ 
+The Master Jenkins will only have the Jenkins installation. Jenkins will not have to be installed on any other systems that are serving as a Worker.
 
 
 

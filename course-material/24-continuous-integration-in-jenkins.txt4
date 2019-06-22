@@ -1,0 +1,344 @@
+Problems before Continuous Integration
+
+
+* Infrequent Commits led to bigger releases in one go leading to complex integration
+* Manual Testing took a lot of time
+* Feedback took a lot of time to reach Developer
+* High risk and uncertainty
+
+
+What is Continuous Integration?
+
+
+The process of having shorter release cycles (sometimes several times a day) i.e. creating small features and integrating them to the source code, and employing automated build and test processes for quicker feedback.
+* Small features in code, simultaneously integrating them with our source code system.
+* The integration and testing happens automatically rather than manually.
+
+
+Advantages of Continuous Integration
+
+
+* Frequent Commits hence smaller feature release
+* Automated Build and Testing
+* Instant Feedback to Developer
+* Low risk and Faster Delivery
+
+
+What is Jenkins?
+
+
+Jenkins is an open source automation server written in Java. Jenkins helps to automate the non-human part of the software development process, with continuous integration and facilitating technical aspects of continuous delivery.
+
+
+Setting up Jenkins
+
+
+There are Docker images with Jenkins, or you can set up manually.
+
+
+sudo apt-get install openjdk-8-jdk
+* JavaDeveloperKit, needed because Jenkins runs on Java.
+sudo wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+* Add Jenkins key to this repository
+sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian binary/ > /etc/apt/sources.list.d/jenkins.list'
+* Adds the binary of Jenkins to this list
+sudo apt-get update
+* Update so our repository links get updated
+sudo apt-get install jenkins
+
+
+Now that you have Jenkins installed, navigate to your host IP with the port 8080. It will ask you for your initialAdminPassword, found with the following command
+
+
+ubuntu@ip-172-31-28-253:~$ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+cd15902d7a7544cba4d8dcbc79c1748d
+
+
+We now have a GUI to work with.
+* Click Install suggested plugins
+* Fill out form
+* Save and finish
+
+
+Jenkins Master Worker Architecture
+
+
+* Jenkins Master-Worker architecture is important to accomplish Continuous Deployment
+* Jenkins Workers don't need to have Jenkins installed on them
+* Useful in scenarios where it distributes the load when we have parallel and complex builds
+
+
+Testing will always happen on the testing server, and Production code will always be deployed on the production server. You will always have to be working on multiple machines working in a DevOps environment.
+
+
+Jenkins becomes your Master server, Testing server becomes the Worker server for Jenkins. Similarly, your Production server would become a Worker server for Jenkins.
+
+
+The Master Jenkins will only have the Jenkins installation. Jenkins will not have to be installed on any other systems that are serving as a Worker.
+
+
+
+
+Setting up Master Worker on AWS
+
+
+* Create Master Jenkins Server
+    * Make sure you have All Traffic instead of All TCP
+        * To change this, in description click on Security Groups > Group Name > Inbound > Edit
+
+
+* Deploy 2 servers (Worker1 and Worker2)
+* Connect Workers using JNLP connection
+
+
+In your ec2 instances, if you don't already have Worker nodes:
+* Right click on the Master Jenkins > launch more like this.
+* In the configure instance step, select 2 instances.
+* Rename the to workers to an easy to read convention (Worker1 (Jenkins), Worker2 (Jenkins))
+
+
+Now that the instances have been created, go back to your Jenkins Master Admin Panel 
+
+
+<BREAK>
+
+
+The tutorial follows the JNLP connection path (Java Network Launch Path). I pieced together steps from three guides to get my worker connected.
+
+
+https://linuxacademy.com/blog/devops/adding-a-jenkins-agent-node/
+https://www.howtoforge.com/tutorial/ubuntu-jenkins-master-slave/
+https://github.com/miztiik/DevOps-Demos/tree/master/setup-jenkins-slave
+
+
+Once you have Jenkins configured on your Master machine, with all of the dependencies listed above, setup a worker with sudo apt-get update & sudo apt-get install openjdk-8-jdk.
+
+
+What I did essentially is, the Master has two users: ubuntu (/home/ubuntu) and the jenkins user that comes with the install (/var/lib/jenkins). On the Worker, make a new user with the command useradd -m -s /bin/bash jenkins. The -m creates the user in the /home directory, -s gives you a nice colorful bash shell to work with. Make sure to use the command sudo passwd <new-jenkins-worker> to set a password.
+
+
+*** YOU SHOULD ACTUALLY MAKE THE USERNAME SOMETHING LIKE "jenkins-worker-3" INSTEAD OF "jenkins", ITS EASIER TO TELL WITH MULTIPLE WORKERS ***
+
+
+*** This is old, and no longer relevant. ***
+From here, you're going to need to create ssh keys for each of the four users. Essentially, you want ubuntu 1 + jenkins 1> ssh> ubuntu 2 + jenkins 2 and ubuntu 2 + jenkins 2 > ssh > ubuntu 1 + jenkins 1. This involves a lot of copying cat ~.ssh/id_rsa.pub data and pasting into the other nodes nano ~.ssh/authorized_keys file. 
+
+
+How do we do this? Each user does a ssh-keygen and sticks the id_rsa.pub string into the other node's authorized_keys file. You shouldn't run into any permissions errors with keygen's, I was getting errors with one Worker node before I wiped it out. I had given jenkins Master sudo privileges, and it was trying to default things to /root/bin. It was weird, but starting fresh and getting it to work didn't cause any of these errors.
+
+
+Another tip was to " Make sure your .ssh dir has permissions 700 and your authorized_keys file has permissions 644" 
+* chmod 700 ~/.ssh
+* chmod 644 ~/.ssh/authorized_keys
+
+
+*** UPDATE - THIS IS THE ONLY STEP YOU NEED TO TAKE TO CONFIGURE THE WORKER NODE ***
+ 
+On the Worker node, in the jenkins user, you must add it's OWN id_rsa.pub to it's OWN authorized_keys file. This was what took me the longest, it doesn't make since but after all of the steps we have gone through this is the one that makes it all work.
+
+
+*** SETTING UP WITH THE GUI *** 
+
+
+From here, you no longer are working in the Master node, everything else pertains to the Slave node. 
+
+
+This can be done whenever, but you navigate to Manage Jenkins > Manage Nodes > New Node:
+
+
+Here, enter the Node Name (Something like jenkins-worker-3) will work. Click Permanent Agent as well, then OK.
+
+
+https://www.evernote.com/shard/s457/res/b6b7688f-41cc-4226-a4d6-2b62efcd9cd5 
+
+
+Now a few of these things are pretty important, so I'll list everything out.
+
+
+* Name: Name of the node 
+* Description: Helpful Description
+* # of Executors: Click on the ? box to learn more
+* Remote Root Directory: *** This is your root directory for your jenkins user
+    * su - jenkins then pwd returns /home/jenkins
+    * It could also be in /var/lib/jenkins, it doesn't matter as long as you copy the pwd directory after you log in. 
+* Labels: Useful for grouping, I think OS environment and tech is a good start
+* Usage: Click on the ? to learn more
+* Launch Method: Were going with the SSH method here.
+* Host: Host is your private ip, so the command ifconfig | grep inet with the inet value being what you want, put that in there.
+* Credentials: Next Segment
+* Host Key Verification Strategy: Change it to Manually Trusted Key, it works best.
+
+
+The rest you can leave as defaults.
+
+
+
+https://www.evernote.com/shard/s457/res/85aeb4c8-d7ad-4cdf-9988-ff4accf75c54
+
+
+
+Now the last step is to enter your username (should be jenkins if you've been following these steps), click the add button for private key, and paste in your private key. The two screen shots show you how to get through the rest of the setup.
+
+
+
+https://www.evernote.com/shard/s457/res/668c8634-19ed-428e-b7c1-4564dc57ff6e
+
+
+
+https://www.evernote.com/shard/s457/res/eedf72bf-386e-41d4-aaf9-6964012ee49e
+
+
+
+When you're done, it will probably show a red x like this.
+
+
+
+https://www.evernote.com/shard/s457/res/1e0670f8-a428-472d-baff-db585702c3fc
+
+
+
+Just click on Worker3 and click the Launch Agent button. Then you should be good to go!
+* If it doesn't work, pay close attention to the errors, one error said I didn't have a know hosts file in my /.ssh folder. If I looked closer, I would have noticed it was referring to my Master node and not my Worker node.
+
+
+
+https://www.evernote.com/shard/s457/res/0a3b4b1f-df39-4451-9f8c-45079c77efca
+
+
+</BREAK>
+
+
+CI CD Pipeline on Jenkins
+
+
+* Get the project from https://github.com/hshar/devopsIQ.git
+* Install Docker on both slaves
+* Configure Jenkins to build the project on Worker1 (Test Server) if successful, should be built on Worker2 (Production Server)
+* Finally, trigger the job using git web-hooks
+
+
+Workers
+* sudo apt-get install docker.io -y
+    * On your workers, it's safe to give them sudo permissions. To do this, log into one of the users with sudo already
+        * root > sudo usermod -aG sudo jenkins
+
+
+Now that we have docker installed, go to the Jenkins GUI home
+* Click "create-new-jobs"
+* Give it a name (ex: worker1-test-server)
+    * This will become a directory in your worker1 instance, so best to use normal file naming conventions.
+* Make sure Freestyle Project is selected
+    * Click OK at the bottom
+* Locate the Github Project checkbox, and add your clone link from github to the input box.
+* Scroll to Source Code Management, click on Git and enter the same link.
+* Because this will be our Test Server we need to find the checkbox that says "Restrict where this project can run" and check "worker1"
+    * I went back into each of the nodes and gave them worker1 and worker2
+    * If when you're typing this in and it gives you a yellow message, make sure you type the entire label out (no space) and click on the option from the drop down box.
+
+
+Before we continue, there are a couple more steps but lets test our connection to git. Scroll to the bottom and click the "Save" button. On the next screen, click "Build Now" on the left. You'll see under build history just below this panel, click on the ball icon to see the log of your build. If it's successful, you can go to your Worker instance and see there is a new directory called workspace. Congrats! Now on the left panel, click "Configure" to get back to your job settings.
+
+
+* Scroll down to build, click "Add build step > Execute Shell"
+    * Enter commands that you want your machine to execute inside the terminal
+* sudo docker rm -f $(sudo docker ps -a -q)
+    * Remove all running containers on this machine
+* sudo docker build /home/jenkins/workspace/Worker1\ \(Test\ Server\)/ -t test
+    * This is why we shouldn't put spaces or parentheses in our directory names.
+    * Create a new Docker Image, then give it a name with the -t <name-of-new-image>
+* sudo docker run -it -p 82:80 -d test
+    * Now, create a new Docker Container on port 80 named test
+
+
+To check if your Docker File is building the containers or not, do these steps manually in the machines terminal. 
+
+
+* If you run into sudo issues, look at this post https://www.cyberciti.biz/faq/linux-unix-running-sudo-command-without-a-password/
+    * sudo su -
+    * sudo visudo
+    * Enter at the bottom of the file
+        * <user-name> ALL=(ALL) NOPASSWD:ALL
+
+
+If you can navigate to your Worker1:Port/dockerIQ and see the picture, you're good to go!
+
+
+* At the bottom of your Build Config, click "Save", and in your Worker remove all the containers that you manually started.
+* Click "Build Now"
+
+
+We get this error:
+[Worker1 (Test Server)] $ /bin/sh -xe /tmp/jenkins8183200454744945003.sh
++ sudo docker ps -a -q
++ sudo docker rm -f
+"docker rm" requires at least 1 argument.
+See 'docker rm --help'.
+
+
+That is because its trying to stop a container that isn't running. In normal IT, you should always have a container running, but to remedy we can add a line in the command 
+* sudo docker run ubuntu
+Before the rest of the commands. It makes sure one is running, then removes all containers afterwards.
+
+
+Now lets do the same for Worker 2 by going to the dashboard and clicking "New Item".
+
+
+Once you have manually tested that both Worker 1 and Worker 2 are working, let's configure Worker 2 to build ONLY when Worker 1 has a successful build.
+
+
+* Go to Test Server Configurations
+* Scroll down until you see "Post Build Actions"
+* Click on the drop down > Projects To Build > Production Server
+    * Make sure that the radio "Trigger only if build is stable" is clicked.
+
+
+We now have to install the Build Pipeline plugin. Go to Manage Jenkins > Manage Plugins > Available Tab > filter: build pipeline and install without restarting.
+
+
+Now at the Jenkins Dashboard, click the little "+" icon at the top, name it something like CICD and select "Build Pipeline View". Click OK.
+
+
+If you see this, you're good:
+
+
+https://www.evernote.com/shard/s457/res/8cb00377-12ed-4b51-8669-8d0e1fd682d5
+
+
+If you don't see one or the other, make sure when setting up that you select your Test Server as the initial job (after configuring Post Build in the Test Server config).
+
+
+Next click "Run". You may have to refresh after a few seconds to see that both of them are green.
+
+
+Now we want Jenkins to listen for changes in our github repository, so when we push a new commit it runs through the Test Server, then pushes to Production in one easy motion.
+
+
+To do this, we go to our Test Server config and scroll down to the github settings. Click the box that says "GitHub hook trigger for GITScm polling".
+
+
+Next, go to the repository that you are pulling from and go to Settings.
+* Click on Webhooks
+* Click on Add Webhook
+* Copy the IP address and Port number of your Jenkins Master with a /github-webhook path.
+    * http://34.209.228.204:8080/github-webhook/
+    * Click add webhook
+
+
+It should look like this
+
+
+https://www.evernote.com/shard/s457/res/89273cec-f244-4af4-8e2b-25c6ee7cf378
+
+
+
+
+
+
+
+
+
+
+
+
+
+

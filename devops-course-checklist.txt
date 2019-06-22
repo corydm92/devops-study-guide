@@ -23,7 +23,7 @@
 05:26:41 - how to create automated tests in selenium [ done ]
 05:41:42 - features of testng [ done ]
 05:44:45- annotations in testng [ done ]
-06:50:21 - continuous integration in jenkins
+06:50:21 - continuous integration in jenkins [ done ]
 07:46:32 - why kubernetes
 07:56:08 - what is kubernetes
 08:01:16 - kubernetes architecture
