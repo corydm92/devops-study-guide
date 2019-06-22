@@ -24,8 +24,8 @@
 05:41:42 - features of testng [ done ]
 05:44:45- annotations in testng [ done ]
 06:50:21 - continuous integration in jenkins [ done ]
-07:46:32 - why kubernetes
-07:56:08 - what is kubernetes
+07:46:32 - why kubernetes [ done ]
+07:56:08 - what is kubernetes [ done ]
 08:01:16 - kubernetes architecture
 08:32:48 - what is nagios
 08:52:44 - devops interview questions & answers

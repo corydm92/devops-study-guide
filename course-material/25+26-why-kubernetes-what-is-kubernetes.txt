@@ -1,0 +1,68 @@
+Monolithic Applications used to have all of their main features in one code base. This led to a lot of errors in code, malfunctions, etc. when one service was changed.
+
+
+To counter the problems of Monolithic Applications, we came up with Microservices Architecture.
+* All of the features should have a different code base.
+* All of the features should be deployed separately.
+    * They interact using JSON or HTTP etc.
+* Problems with Scaling
+    * Customer service module might now acquire much power from the server it is on.
+    * Still, the customer service module is taking up the whole server, and we cannot deploy anything here.
+    * If you have 10 replicas of your customer service module, taking up 85% to 90% of the cpu, what do you do?
+        * You start a new server with the same number of replicas, but you now share the load in each server.
+        * Now the cpu load has dropped, but because we have a new server both are underutilized.
+    * With Dockerized Microservices, you get zero down time, a chance to update your application without causing a problem with the other services, and many more benefits.
+* Now the problem is "How do I monitor these containers?". If you have 300 or 400 containers how do we asses which containers are running fine?
+
+
+Kubernetes has the most number of features that are essential for container orchestration. We use Kubernetes instead of Docker Swarm because Kubernetes has way more features than Docker Swarm.
+
+
+Without Kubernetes:
+* Each services monitoring is difficult.
+* Scaling a Particular service based on load is not possible.
+* Too much manual intervention required for managing containers.
+* Managing containers on multiple servers becomes difficult.
+
+
+What is Kubernetes?
+
+
+Kubernetes being a container orchestration tool, is used when our application is distributed in multiple containers. Its job is to monitor, scale, and restart automatically even if they are spread across multiple nodes.
+
+
+Features of Kubernetes:
+* Load balancing
+* Health checks
+* Managing multiple containers as one entity
+* Resource usage monitoring
+* Networking
+* Rolling update
+
+
+How Kubernetes Works?
+
+
+K-Master
+* K-Node1
+* K-Node2
+* K-Node3
+* K-Node4
+* K-Node5
+
+
+You have a Master with several nodes inside the Master. The job of the Master is to schedule containers on the Nodes, monitor the Nodes, monitor the containers running in the Nodes, and keep track of the logs.
+
+
+The Master plays the role of Monitoring everything, of Scheduling everything while the Workers (Nodes) have the job of processing whatever it is required in your application (processing, sending API calls, etc). 
+
+
+Kubernetes is running on both the Master and the Nodes. This allows them to interact as if they were one whole system.
+
+
+It's very easy to add more Nodes to the cluster, to an existing cluster it can be done very quickly. Once you have your Master instantiated, you get a command to add new Nodes. All you have to do is install Kubernetes on that node and run the command to add it to the cluster.
+
+
+
+
+

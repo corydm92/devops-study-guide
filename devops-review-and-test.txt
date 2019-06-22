@@ -949,7 +949,7 @@ It is very important to update your Testing Suites with all the New Feature Test
 
 
 
-24.) <<<<< Continuous  Integration in Jenkins
+24.) <<<<< Continuous Integration in Jenkins
 
 
 
@@ -1010,7 +1010,58 @@ The Master Jenkins will only have the Jenkins installation. Jenkins will not hav
 
 
 
+25/26.) <<<<< Why Kubernetes / What is Kubernetes?
 
+
+Q: What is Kubernetes?
+
+
+A: Kubernetes being a container orchestration tool, is used when our application is distributed in multiple containers. Its job is to monitor, scale, and restart automatically even if they are spread across multiple nodes.
+
+
+
+
+Q: What would happen if we didn't have Kubernetes?
+
+
+A: 
+* Each services monitoring is difficult.
+* Scaling a Particular service based on load is not possible.
+* Too much manual intervention required for managing containers.
+* Managing containers on multiple servers becomes difficult.
+
+
+
+
+Q: What are some features of Kubernetes?
+
+
+A: 
+* Load balancing
+* Health checks
+* Managing multiple containers as one entity
+* Resource usage monitoring
+* Networking
+* Rolling update
+
+
+
+
+Q: How does Kubernetes work?
+
+
+A: You have a Master with several nodes inside the Master. The job of the Master is to schedule containers on the Nodes, monitor the Nodes, monitor the containers running in the Nodes, and keep track of the logs.
+ 
+The Master plays the role of Monitoring everything, of Scheduling everything while the Workers (Nodes) have the job of processing whatever it is required in your application (processing, sending API calls, etc). 
+ 
+Kubernetes is running on both the Master and the Nodes. This allows them to interact as if they were one whole system.
+ 
+It's very easy to add more Nodes to the cluster, to an existing cluster it can be done very quickly. Once you have your Master instantiated, you get a command to add new Nodes. All you have to do is install Kubernetes on that node and run the command to add it to the cluster.
+
+
+
+
+27.) <<<<< Why Kubernetes / What is Kubernetes?
 
 
 
